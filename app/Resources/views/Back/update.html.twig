@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block lateral %}
+    {{ include('backLateral.html.twig') }}
+{% endblock %}
+
+{% block body %}
+
+    {% for article in articlesList %}
+<div class="col-sm-12">
+    <p>{{ article.title }}</p>
+    <br/>
+</div>
+    {% endfor %}
+
+{% endblock %}

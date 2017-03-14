@@ -1,3 +1,39 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+home_page:
+    path:    /
+    defaults:
+        _controller: AppBundle:Front:index
+
+article:
+    path:    /article/{id}
+    defaults:
+        _controller: AppBundle:Front:article
+
+add:
+    path:    /add
+    defaults:
+        _controller: AppBundle:Back:add
+
+remove:
+    path:    /remove
+    defaults:
+        _controller: AppBundle:Back:remove
+
+update:
+    path:    /update
+    defaults:
+        _controller: AppBundle:Back:update
+
+moderate:
+    path:    /moderate
+    defaults:
+        _controller: AppBundle:Back:moderateComment
+
+contact:
+    path:    /contact
+    defaults:
+        _controller: AppBundle:Front:contact
+
+auteur:
+    path:    /auteur
+    defaults:
+        _controller: AppBundle:Front:auteur
