@@ -24,4 +24,14 @@ class BddRecording
         $em->persist($article);
         $em->flush();
     }
+
+    public function update($articleModel, $article)
+    {
+        $article->setTitle($articleModel->getTitle());
+        $article->setContent($articleModel->getContent());
+        $article->setUpdatedDate(new \DateTime());
+        $em = $this->manager;
+        $em->refresh($article);
+        $em->flush();
+    }
 }

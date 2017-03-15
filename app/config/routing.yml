@@ -7,21 +7,32 @@ article:
     path:    /article/{id}
     defaults:
         _controller: AppBundle:Front:article
+    requirements:
+        id: \d+
 
 add:
     path:    /add
     defaults:
         _controller: AppBundle:Back:add
 
-remove:
-    path:    /remove
+delete:
+    path:   /delete/{id}
     defaults:
-        _controller: AppBundle:Back:remove
+        _controller: AppBundle:Back:delete
+    requirements:
+            id: \d+
+
+index_back:
+    path:    /index_back
+    defaults:
+        _controller: AppBundle:Back:indexBack
 
 update:
-    path:    /update
+    path:    /update/{id}
     defaults:
         _controller: AppBundle:Back:update
+    requirements:
+            id: \d+
 
 moderate:
     path:    /moderate

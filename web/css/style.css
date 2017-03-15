@@ -1,6 +1,8 @@
 div.article_case{
     border: 1px solid lightblue;
-    border-radius: 25px;
+    border-radius: 15px;
     margin-top: 5px;
     margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

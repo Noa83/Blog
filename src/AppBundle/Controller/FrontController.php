@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Article;
 
 
 class FrontController extends Controller
@@ -20,9 +21,11 @@ class FrontController extends Controller
         ]);
     }
 
-    public function articleAction($id)
+    public function articleAction(Article $article)
     {
-        return $this->render('Front/article.html.twig');
+        return $this->render('Front/article.html.twig', [
+            'article' => $article
+        ] );
     }
 
     public function contactAction()

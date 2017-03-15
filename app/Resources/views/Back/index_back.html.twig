@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block lateral %}
+    {{ include('backLateral.html.twig') }}
+{% endblock %}
+
+{% block body %}
+
+    {% for article in articlesList %}
+        <div class="col-sm-12 article_case">
+            <h4 class="col-sm-8">
+                {{ article.title }}
+            </h4>
+            <a href="{{ path('update', {'id': article.id}) }}" class="btn btn-info">
+                <i class="glyphicon glyphicon-edit"></i>
+                Modifier l'article
+            </a>
+            <a href="{{ path('delete', {'id': article.id}) }}" class="btn btn-danger pull-right">
+                <i class="glyphicon glyphicon-trash"></i>
+                Supprimer l'article
+            </a>
+            <br/>
+        </div>
+    {% endfor %}
+
+{% endblock %}

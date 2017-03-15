@@ -8,13 +8,17 @@
     <br>
     {% for article in articlesList %}
         <div class="col-sm-12 article_case">
-            <div class="col-sm-12">
-                <h3 class="col-sm-8">{{ article.title }}</h3>
-                <div class="pull-right">Publié le: {{ article.publishedDate|date('d-m-Y') }}</div>
-            </div>
-            <div>{{ article.content|raw }}</div>
-            <br>
+        <div class="col-sm-12">
+            <h3 class="col-sm-8">{{ article.title }}</h3>
+            <div class="pull-right">Publié le: {{ article.publishedDate|date('d-m-Y') }}</div>
         </div>
+        <div>{{ article.content|raw }}</div>
+        <br>
+            <a href="{{ path('article', {'id': article.id}) }}" class="btn btn-info pull-right">
+                <i class="glyphicon glyphicon-eye-open"></i>
+                Lire la suite...
+            </a>
+    </div>
         <br>
     {% endfor %}
 

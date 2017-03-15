@@ -7,10 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Model\ArticlesModel;
 use AppBundle\Form\Type\ArticlesType;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Repository\ArticleRepository;
+use AppBundle\Entity\Article;
 
 class BackController extends Controller
 {
+    public function indexBackAction()
+    {
+        $articleRepository = $this->getDoctrine()->getRepository('AppBundle:Article');
+        $articlesList =  $articleRepository->getArticlesList();
+        dump($articlesList);
+
+        return $this->render('Back/index_back.html.twig', [
+            'articlesList' => $articlesList
+        ]);
+    }
+
     public function addAction(Request $request)
     {
         $articleModel = new ArticlesModel();
@@ -25,20 +36,53 @@ class BackController extends Controller
             'formView' => $articleForm->createView(),]);
     }
 
-    public function removeAction()
-    {
-        return $this->render('Back/remove.html.twig');
-    }
 
-    public function updateAction()
+    public function updateAction(Article $article, Request $request)
     {
-        $articleRepository = $this->getDoctrine()->getRepository('AppBundle:Article');
-        $articlesList =  $articleRepository->getArticlesList();
-        dump($articlesList);
+        $articleModel = new ArticlesModel();
+        $articleForm = $this->get('form.factory')->create(ArticlesType::class, $articleModel);
+//        $id = $request->get('id');
+//        $article = $em->getRepository('OCPlatformBundle:Advert')->find($id);
+        dump($article);
+        if ($request->isMethod('POST') && $articleForm->handleRequest($request)->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $article->setTitle($articleModel->getTitle());
+            $article->setContent($articleModel->getContent());
+            $article->setUpdatedDate(new \DateTime());
+            $em->persist($article);
+            $em->flush();
+            $this->addFlash('success', 'Votre article a bien été ajouté');
+
+            return $this->redirectToRoute('index_back');
+        }
+
+//        $em = $this->getDoctrine()->getManager();
+//        $article->setTitle();
+//        $article->setContent();
+//        $article->setUpdatedDate(new \DateTime());
+//        $em->refresh($article);
+//        $em->flush();
+////        $articleRepository = $this->getDoctrine()->getRepository('AppBundle:Article');
+////        $articleId =  $articleRepository->getArticleById($id);
+//        dump($article);
 
         return $this->render('Back/update.html.twig', [
-            'articlesList' => $articlesList
+            'formView' => $articleForm->createView(),
+            'article' => $article
         ]);
+    }
+
+    public function deleteAction(Article $article)
+    {
+//        $id = $request->get('id');
+//        $em = $this->getDoctrine()->getManager();
+//        $article = $em->getRepository('OCPlatformBundle:Advert')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($article);
+        $em->flush();
+
+        return $this->redirectToRoute('index_back');
     }
 
     public function moderateCommentAction()
