@@ -11,31 +11,31 @@ article:
         id: \d+
 
 add:
-    path:    /add
+    path:    /author/add
     defaults:
         _controller: AppBundle:Back:add
 
 delete:
-    path:   /delete/{id}
+    path:   /author/delete/{id}
     defaults:
         _controller: AppBundle:Back:delete
     requirements:
             id: \d+
 
 index_back:
-    path:    /index_back
+    path:    /author/index_back
     defaults:
         _controller: AppBundle:Back:indexBack
 
 update:
-    path:    /update/{id}
+    path:    /author/update/{id}
     defaults:
         _controller: AppBundle:Back:update
     requirements:
             id: \d+
 
 moderate:
-    path:    /moderate
+    path:    /author/moderate
     defaults:
         _controller: AppBundle:Back:moderateComment
 
@@ -48,3 +48,17 @@ auteur:
     path:    /auteur
     defaults:
         _controller: AppBundle:Front:auteur
+
+login:
+    path:   /login
+    defaults:
+        _controller: UserBundle:Security:login
+
+login_check:
+    path:   /login_check
+
+logout:
+    path:  /logout
+
+
+

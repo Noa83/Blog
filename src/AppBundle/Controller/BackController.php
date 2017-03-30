@@ -8,9 +8,13 @@ use AppBundle\Model\ArticlesModel;
 use AppBundle\Form\Type\ArticlesType;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Article;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class BackController extends Controller
 {
+    /**
+     * @Security("has_role('ROLE_AUTHOR')")
+     */
     public function indexBackAction()
     {
         $articleRepository = $this->getDoctrine()->getRepository('AppBundle:Article');
@@ -22,6 +26,9 @@ class BackController extends Controller
         ]);
     }
 
+    /**
+     * @Security("has_role('ROLE_AUTHOR')")
+     */
     public function addAction(Request $request)
     {
         $articleModel = new ArticlesModel();
@@ -36,7 +43,9 @@ class BackController extends Controller
             'formView' => $articleForm->createView(),]);
     }
 
-
+    /**
+     * @Security("has_role('ROLE_AUTHOR')")
+     */
     public function updateAction(Article $article, Request $request)
     {
         $articleModel = new ArticlesModel();
@@ -73,6 +82,9 @@ class BackController extends Controller
         ]);
     }
 
+    /**
+     * @Security("has_role('ROLE_AUTHOR')")
+     */
     public function deleteAction(Article $article)
     {
 //        $id = $request->get('id');
@@ -85,6 +97,9 @@ class BackController extends Controller
         return $this->redirectToRoute('index_back');
     }
 
+    /**
+     * @Security("has_role('ROLE_AUTHOR')")
+     */
     public function moderateCommentAction()
     {
         return $this->render('Back/moderateComment.html.twig');

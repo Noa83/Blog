@@ -3,15 +3,22 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Article
  *
  * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ArticleRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Article
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
+     */
+    private $commentaires;
+
     /**
      * @var int
      *
@@ -42,15 +49,12 @@ class Article
      */
     private $publishedDate;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated_date", type="date")
-     */
-    private $updatedDate;
+
 
     public function __construct()
     {
+        $this->commentaires = new ArrayCollection();
+
         $this->publishedDate = new \Datetime();
     }
 
@@ -136,27 +140,5 @@ class Article
         return $this->publishedDate;
     }
 
-    /**
-     * Set updatedDate
-     *
-     * @param \DateTime $updatedDate
-     *
-     * @return Article
-     */
-    public function setUpdatedDate($updatedDate)
-    {
-        $this->updatedDate = $updatedDate;
 
-        return $this;
-    }
-
-    /**
-     * Get updatedDate
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedDate()
-    {
-        return $this->updatedDate;
-    }
 }

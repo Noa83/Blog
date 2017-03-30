@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="commentaire")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentaireRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Commentaire
 {
@@ -36,9 +37,9 @@ class Commentaire
     private $contenu;
 
     /**
-     * @var int
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="commentaires")
      *
-     * @ORM\Column(name="id_article", type="integer")
+     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
      */
     private $idArticle;
 
@@ -49,6 +50,25 @@ class Commentaire
      */
     private $publishedDate;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="moderated", type="date")
+     */
+    private $moderated;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="signaled", type="boolean")
+     */
+    private $signaled;
+
+    public function __construct()
+    {
+        $this->setPublishedDate(new \DateTime());
+        $this->setModerated(new \DateTime());
+    }
 
     /**
      * Get id
@@ -154,5 +174,37 @@ class Commentaire
     public function getPublishedDate()
     {
         return $this->publishedDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getModerated()
+    {
+        return $this->moderated;
+    }
+
+    /**
+     * @param mixed $moderated
+     */
+    public function setModerated($moderated)
+    {
+        $this->moderated = $moderated;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSignaled()
+    {
+        return $this->signaled;
+    }
+
+    /**
+     * @param mixed $signaled
+     */
+    public function setSignaled($signaled)
+    {
+        $this->signaled = $signaled;
     }
 }

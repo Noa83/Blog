@@ -31,7 +31,7 @@ class BddRecording
         $article->setContent($articleModel->getContent());
         $article->setUpdatedDate(new \DateTime());
         $em = $this->manager;
-        $em->refresh($article);
+        $em->persist($article);
         $em->flush();
     }
 }
