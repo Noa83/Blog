@@ -15,9 +15,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Article
 {
     /**
-     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="article", cascade={"persist"})
      */
-    private $commentaires;
+    private $comments;
 
     /**
      * @var int
@@ -66,41 +66,41 @@ class Article
 
     public function __construct()
     {
-        $this->commentaires = new ArrayCollection();
+        $this->comments = new ArrayCollection();
         $this->createdDate = new \Datetime();
     }
 
     /**
-     * Add Commentaire
+     * Add Comment
      *
-     * @param \AppBundle\Entity\Commentaire $commentaire
+     * @param \AppBundle\Entity\Comment $comment
      *
      * @return Article
      */
-    public function addCommentaire(\AppBundle\Entity\Commentaire $commentaire)
+    public function addComment(\AppBundle\Entity\Comment $comment)
     {
-        $this->commentaires[] = $commentaire;
+        $this->comments[] = $comment;
         return $this;
     }
 
     /**
-     * Remove Commentaire
+     * Remove Comment
      *
-     * @param \AppBundle\Entity\Commentaire $commentaire
+     * @param \AppBundle\Entity\Comment $comment
      */
-    public function removeCommentaire(\AppBundle\Entity\Commentaire $commentaire)
+    public function removeComment(\AppBundle\Entity\Comment $comment)
     {
-        $this->commentaires->removeElement($commentaire);
+        $this->comments->removeElement($comment);
     }
 
     /**
-     * Get Commentaires
+     * Get Comments
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCommentaires()
+    public function getComments()
     {
-        return $this->commentaires;
+        return $this->comments;
     }
 
     /**

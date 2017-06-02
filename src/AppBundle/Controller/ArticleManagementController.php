@@ -11,12 +11,12 @@ use AppBundle\Entity\Article;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class GestionArticleController extends Controller
+class ArticleManagementController extends Controller
 {
     /**
      * @Security("has_role('ROLE_AUTHOR')")
      *
-     * @Route("/auteur/update/{id}", name="update", requirements={"id" = "\d+"})
+     * @Route("/author/update/{id}", name="update", requirements={"id" = "\d+"})
      */
     public function updateAction(Article $article, Request $request)
     {
@@ -25,13 +25,13 @@ class GestionArticleController extends Controller
 
         if ($request->isMethod('POST') && $articleForm->handleRequest($request)->isValid()) {
 
-            $this->get('gestion_article_dans_bdd')->updateArticle($articleModel, $article);
+            $this->get('article_management_in_bdd')->updateArticle($articleModel, $article);
             $this->addFlash('success', 'Votre article a bien été ajouté');
 
-            return $this->redirectToRoute('auteur_home_page');
+            return $this->redirectToRoute('author_home_page');
         }
 
-        return $this->render('Gestion_Article/update.html.twig', [
+        return $this->render('Article_management/update.html.twig', [
             'formView' => $articleForm->createView(),
             'article' => $article
         ]);
@@ -40,40 +40,40 @@ class GestionArticleController extends Controller
     /**
      * @Security("has_role('ROLE_AUTHOR')")
      *
-     * @Route("/auteur/delete/{id}", name="delete", requirements={"id" = "\d+"})
+     * @Route("/author/delete/{id}", name="delete", requirements={"id" = "\d+"})
      */
     public function deleteAction(Article $article)
     {
-        $this->get('gestion_article_dans_bdd')->executeActionOnArticle($this->get('gestion_article_dans_bdd')->deleteArticle($article));
+        $this->get('article_management_in_bdd')->executeActionOnArticle($this->get('article_management_in_bdd')->deleteArticle($article));
         $this->addFlash('success', 'Votre article a bien été supprimé');
 
-        return $this->redirectToRoute('auteur_home_page');
+        return $this->redirectToRoute('author_home_page');
     }
 
     /**
      * @Security("has_role('ROLE_AUTHOR')")
      *
-     * @Route("/auteur/unpublish/{id}", name="unpublish", requirements={"id" = "\d+"})
+     * @Route("/author/unpublish/{id}", name="unpublish", requirements={"id" = "\d+"})
      */
     public function unpublishAction(Article $article)
     {
-        $this->get('gestion_article_dans_bdd')->executeActionOnArticle($this->get('gestion_article_dans_bdd')->unpublishArticle($article));
+        $this->get('article_management_in_bdd')->executeActionOnArticle($this->get('article_management_in_bdd')->unpublishArticle($article));
         $this->addFlash('success', 'Votre article a bien été retiré des publications');
 
-        return $this->redirectToRoute('auteur_home_page');
+        return $this->redirectToRoute('author_home_page');
     }
 
     /**
      * @Security("has_role('ROLE_AUTHOR')")
      *
-     * @Route("/auteur/publish/{id}", name="publish", requirements={"id" = "\d+"})
+     * @Route("/author/publish/{id}", name="publish", requirements={"id" = "\d+"})
      */
     public function publishAction(Article $article)
     {
-        $this->get('gestion_article_dans_bdd')->executeActionOnArticle($this->get('gestion_article_dans_bdd')->publishArticle($article));
+        $this->get('article_management_in_bdd')->executeActionOnArticle($this->get('article_management_in_bdd')->publishArticle($article));
         $this->addFlash('success', 'Votre article a bien été retiré des publications');
 
-        return $this->redirectToRoute('auteur_home_page');
+        return $this->redirectToRoute('author_home_page');
     }
 
 }

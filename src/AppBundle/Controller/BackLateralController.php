@@ -15,7 +15,7 @@ class BackLateralController extends Controller
      */
     public function getNumberOfPublished()
     {
-        return new Response($this->get('compte_nombre_articles')->getNumberOfArticles($this->getDoctrine()->getRepository('AppBundle:Article')->getArticlesList()));
+        return new Response($this->get('number_of_articles')->getNumberOfArticles($this->getDoctrine()->getRepository('AppBundle:Article')->getArticlesList()));
     }
 
     /**
@@ -23,6 +23,6 @@ class BackLateralController extends Controller
      */
     public function getNumberOfUnpublished()
     {
-        return new Response($this->get('compte_nombre_articles')->getNumberOfArticles($this->getDoctrine()->getRepository('AppBundle:Article')->getUnpublishedArticlesList()));
+        return new Response($this->get('number_of_articles')->getNumberOfArticles($this->getDoctrine()->getRepository('AppBundle:Article')->getUnpublishedArticlesList()));
     }
 }

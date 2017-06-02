@@ -7,20 +7,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class BrouillonArticleController extends Controller
+class AuthorHomePageController extends Controller
 {
     /**
      * @Security("has_role('ROLE_AUTHOR')")
      *
-     * @Route("/auteur/brouillons", name="brouillons")
+     * @Route("/author/", name="author_home_page")
      */
-    public function brouillonsAction()
+    public function indexBackAction()
     {
         $articleRepository = $this->getDoctrine()->getRepository('AppBundle:Article');
-        $unpublishedArticlesList =  $articleRepository->getUnpublishedArticlesList();
+        $articlesList =  $articleRepository->getArticlesList();
 
-        return $this->render('Brouillons/brouillons.html.twig', [
-            'unpublishedArticlesList' => $unpublishedArticlesList
+        return $this->render('Author_home_page/index_author_home.html.twig', [
+            'articlesList' => $articlesList
         ]);
     }
 }

@@ -2,19 +2,21 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
- * Commentaire
+ * Comment
  *
- * @ORM\Table(name="commentaire")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentaireRepository")
+ * @ORM\Table(name="comment")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Commentaire
+class Comment
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="comments")
      *
      * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
      */
@@ -32,16 +34,16 @@ class Commentaire
     /**
      * @var string
      *
-     * @ORM\Column(name="auteur", type="text")
+     * @ORM\Column(name="author", type="text")
      */
-    private $auteur;
+    private $author;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contenu", type="text")
+     * @ORM\Column(name="content", type="text")
      */
-    private $contenu;
+    private $content;
 
     /**
      * @var \DateTime
@@ -51,11 +53,15 @@ class Commentaire
     private $publishedDate;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="parent_comment", nullable=true, type="integer")
+     * @OneToMany(targetEntity="Comment", mappedBy="parent")
      */
-    private $parentCommentId;
+    private $children;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Comment", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     */
+    private $parent;
 
     /**
      * @var \DateTime
@@ -75,7 +81,7 @@ class Commentaire
     {
         $this->setPublishedDate(new \DateTime());
         $this->setSignaled(false);
-//        $this->setModerated(new \DateTime());
+        $this->children = new ArrayCollection();
     }
 
     /**
@@ -91,13 +97,13 @@ class Commentaire
     /**
      * Set auteur
      *
-     * @param string $auteur
+     * @param string $author
      *
      * @return Commentaire
      */
-    public function setAuteur($auteur)
+    public function setAuthor($author)
     {
-        $this->auteur = $auteur;
+        $this->author = $author;
 
         return $this;
     }
@@ -107,21 +113,21 @@ class Commentaire
      *
      * @return string
      */
-    public function getAuteur()
+    public function getAuthor()
     {
-        return $this->auteur;
+        return $this->author;
     }
 
     /**
      * Set contenu
      *
-     * @param string $contenu
+     * @param string $content
      *
      * @return Commentaire
      */
-    public function setContenu($contenu)
+    public function setContent($content)
     {
-        $this->contenu = $contenu;
+        $this->content = $content;
 
         return $this;
     }
@@ -131,9 +137,9 @@ class Commentaire
      *
      * @return string
      */
-    public function getContenu()
+    public function getContent()
     {
-        return $this->contenu;
+        return $this->content;
     }
 
     /**
@@ -174,22 +180,6 @@ class Commentaire
     public function getPublishedDate()
     {
         return $this->publishedDate;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getParentCommentId()
-    {
-        return $this->parentCommentId;
-    }
-
-    /**
-     * @param mixed $parentCommentId
-     */
-    public function setParentCommentId($parentCommentId)
-    {
-        $this->parentCommentId = $parentCommentId;
     }
 
     /**

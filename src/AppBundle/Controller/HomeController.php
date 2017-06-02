@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 
-class AccueilController extends Controller
+class HomeController extends Controller
 {
 
     /**
@@ -19,7 +19,7 @@ class AccueilController extends Controller
         $articlesList =  $articleRepository->getArticlesList();
 
 
-        return $this->render('Accueil/index.html.twig', [
+        return $this->render('Home/index.html.twig', [
             'articlesList' => $articlesList
         ]);
     }

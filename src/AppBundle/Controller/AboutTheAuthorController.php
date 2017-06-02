@@ -7,13 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 
-class AproposAuteurController extends Controller
+class AboutTheAuthorController extends Controller
 {
     /**
-     * @Route("/a_propos", name="auteur")
+     * @Route("/about", name="author")
      */
-    public function auteurAction()
+    public function authorAction()
     {
-        return $this->render('A_Propos/auteur.html.twig');
+        return $this->render('About_the_Author/author.html.twig');
     }
 }

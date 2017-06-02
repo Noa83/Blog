@@ -3,7 +3,7 @@
 namespace AppBundle\Services;
 
 
-class CompteNombreArticles
+class NumberOfArticles
 {
     public function getNumberOfArticles($articleList)
     {

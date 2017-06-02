@@ -7,20 +7,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class AuteurHomePageController extends Controller
+class DraftCopyController extends Controller
 {
     /**
      * @Security("has_role('ROLE_AUTHOR')")
      *
-     * @Route("/auteur/", name="auteur_home_page")
+     * @Route("/author/drafts", name="drafts")
      */
-    public function indexBackAction()
+    public function draftsAction()
     {
         $articleRepository = $this->getDoctrine()->getRepository('AppBundle:Article');
-        $articlesList =  $articleRepository->getArticlesList();
+        $unpublishedArticlesList =  $articleRepository->getUnpublishedArticlesList();
 
-        return $this->render('Home_page_Auteur/index_back.html.twig', [
-            'articlesList' => $articlesList
+        return $this->render('Draft_copy/draft.html.twig', [
+            'unpublishedArticlesList' => $unpublishedArticlesList
         ]);
     }
 }
