@@ -1,64 +1,9 @@
-home_page:
-    path:    /
-    defaults:
-        _controller: AppBundle:Front:index
-
-article:
-    path:    /article/{id}
-    defaults:
-        _controller: AppBundle:Front:article
-    requirements:
-        id: \d+
-
-add:
-    path:    /author/add
-    defaults:
-        _controller: AppBundle:Back:add
-
-delete:
-    path:   /author/delete/{id}
-    defaults:
-        _controller: AppBundle:Back:delete
-    requirements:
-            id: \d+
-
-index_back:
-    path:    /author/index_back
-    defaults:
-        _controller: AppBundle:Back:indexBack
-
-update:
-    path:    /author/update/{id}
-    defaults:
-        _controller: AppBundle:Back:update
-    requirements:
-            id: \d+
-
-moderate:
-    path:    /author/moderate
-    defaults:
-        _controller: AppBundle:Back:moderateComment
-
-contact:
-    path:    /contact
-    defaults:
-        _controller: AppBundle:Front:contact
-
-auteur:
-    path:    /auteur
-    defaults:
-        _controller: AppBundle:Front:auteur
-
-login:
-    path:   /login
-    defaults:
-        _controller: UserBundle:Security:login
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
 
 login_check:
-    path:   /login_check
+    path: /login_check
 
 logout:
-    path:  /logout
-
-
-
+    path: /logout

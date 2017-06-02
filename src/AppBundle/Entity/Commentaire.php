@@ -14,6 +14,13 @@ use Doctrine\ORM\Mapping as ORM;
 class Commentaire
 {
     /**
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="commentaires")
+     *
+     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     */
+    private $article;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -37,13 +44,6 @@ class Commentaire
     private $contenu;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="commentaires")
-     *
-     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
-     */
-    private $idArticle;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="published_date", type="date")
@@ -51,9 +51,16 @@ class Commentaire
     private $publishedDate;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="parent_comment", nullable=true, type="integer")
+     */
+    private $parentCommentId;
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="moderated", type="date")
+     * @ORM\Column(name="moderated", nullable=true, type="date")
      */
     private $moderated;
 
@@ -67,7 +74,8 @@ class Commentaire
     public function __construct()
     {
         $this->setPublishedDate(new \DateTime());
-        $this->setModerated(new \DateTime());
+        $this->setSignaled(false);
+//        $this->setModerated(new \DateTime());
     }
 
     /**
@@ -129,27 +137,19 @@ class Commentaire
     }
 
     /**
-     * Set idArticle
-     *
-     * @param integer $idArticle
-     *
-     * @return Commentaire
+     * @return mixed
      */
-    public function setIdArticle($idArticle)
+    public function getArticle()
     {
-        $this->idArticle = $idArticle;
-
-        return $this;
+        return $this->article;
     }
 
     /**
-     * Get idArticle
-     *
-     * @return int
+     * @param mixed $article
      */
-    public function getIdArticle()
+    public function setArticle($article)
     {
-        return $this->idArticle;
+        $this->article = $article;
     }
 
     /**
@@ -174,6 +174,22 @@ class Commentaire
     public function getPublishedDate()
     {
         return $this->publishedDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParentCommentId()
+    {
+        return $this->parentCommentId;
+    }
+
+    /**
+     * @param mixed $parentCommentId
+     */
+    public function setParentCommentId($parentCommentId)
+    {
+        $this->parentCommentId = $parentCommentId;
     }
 
     /**

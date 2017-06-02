@@ -1,0 +1,29 @@
+{% extends 'baseBlog.html.twig' %}
+
+{% block lateral %}
+    {{ include('backLateral.html.twig') }}
+{% endblock %}
+
+{% block body %}
+<h4>Modification de l'article: {{ article.title }}</h4>
+
+    {{ include(':Gestion_Article:formTinyMCEPreRempli.html.twig') }}
+        
+        <div class="col-sm-12">
+            <input type="button" data-toggle="modal" data-target="#myModal" value="Mettre à jour"
+                class="btn btn-default pull-right"/>
+        </div>
+
+        {{ include('modaleUpdate.html.twig') }}
+
+    {{ form_end(formView) }}
+
+    <div class="col-sm-12">
+        <a href="{{ path('auteur_home_page') }}" class="btn btn-info pull-right">
+            <i class="glyphicon glyphicon-eye-open"></i>
+            Retour à la liste des articles
+        </a>
+    </div>
+
+
+{% endblock %}

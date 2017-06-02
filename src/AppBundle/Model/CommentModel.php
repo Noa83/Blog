@@ -14,6 +14,8 @@ class CommentModel
 {
     private $author;
 
+    private $content;
+
     /**
      * @return mixed
      */
@@ -45,8 +47,4 @@ class CommentModel
     {
         $this->content = $content;
     }
-    private $content;
-
-
-
 }

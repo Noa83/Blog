@@ -22,7 +22,7 @@ security:
             form_login:
                 login_path: login
                 check_path: login_check
-                default_target_path: /author/index_back
+                default_target_path: /auteur/
             logout:
                 path: logout
                 target: /
@@ -30,5 +30,5 @@ security:
 
 
     access_control:
-        - { path: ^/author, roles: ROLE_AUTHOR }
+        - { path: ^/auteur, roles: ROLE_AUTHOR }
 

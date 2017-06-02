@@ -1,0 +1,71 @@
+{% extends 'baseBlog.html.twig' %}
+
+{% block lateral %}
+    {{ include('blogLateral.html.twig') }}
+{% endblock %}
+
+{% block body %}
+    <div class="col-sm-12 article_case">
+        <div class="col-sm-12">
+            <h3 class="col-sm-8">{{ article.title }}</h3>
+            <div class="pull-right">Publié le: {{ article.createdDate|date('d-m-Y') }}</div>
+        </div>
+        <div>{{ article.content|raw }}</div>
+        <a href="{{ path('home_page') }}" class="btn btn-info pull-right">
+            <i class="glyphicon glyphicon-home"></i>
+            Retour à la liste des articles
+        </a>
+        <a href="#" class="btn btn-success pull-right">
+            Chapitre suivant
+            <i class="glyphicon glyphicon-chevron-right"></i>
+        </a>
+        <a href="#" class="btn btn-warning pull-right">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Chapitre précédent
+        </a>
+        {#<button class="pull-right"><span class="glyphicon glyphicon-plus"></span> Commenter</button>#}
+    </div>
+    <div>
+        <div class="comment_form">
+            {{ form_start(formView, {'attr': {'class': 'form-horizontal', 'novalidate':'novalidate'}}) }}
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    {{ form_errors(formView.author) }}
+                </div>
+
+                {{ form_label(formView.author, "Votre nom ou pseudo", {'label_attr': {'for':'author_label'}}) }}
+
+                <div class="col-sm-12">
+                    {{ form_widget(formView.author, {'attr': {'class': 'form-control', 'id':'author_label', 'placeholder':'Saisissez votre nom ou pseudo' }}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    {{ form_errors(formView.content) }}
+                </div>
+
+                {{ form_label(formView.content, "Commentaire", {'label_attr': {'for':'comment_label'}}) }}
+
+                <div class="col-sm-12">
+                    {{ form_widget(formView.content, {'attr': {'class': 'form-control', 'id':'comment_label', 'placeholder':'Saisissez votre commentaire' }}) }}
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <input id="publish" type="submit" value="Publier" class="btn btn-primary pull-right"/>
+            </div>
+
+            {{ form_end(formView) }}
+        </div>
+        {#{% for comment in commentsList %}#}
+            {#<div>#}
+                {#<p>{{ comment.auteur }}</p>#}
+                {#<p>Publié le: {{ comment.publishedDate|date('d-m-Y') }}</p>#}
+                {#<p>{{ comment.contenu }}</p>#}
+                {#<button>signaler ce commentaire</button>#}
+            {#</div>#}
+
+        {#{% endfor %}#}
+    </div>
+
+{% endblock %}

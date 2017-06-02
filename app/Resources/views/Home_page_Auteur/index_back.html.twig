@@ -1,0 +1,34 @@
+{% extends 'baseBlog.html.twig' %}
+
+{% block lateral %}
+    {{ include('backLateral.html.twig') }}
+{% endblock %}
+
+{% block body %}
+
+    {% for article in articlesList %}
+        <div class="col-sm-12 article_case">
+            <h4 class="col-sm-8">
+                {{ article.title }}
+            </h4>
+            <div class="col-sm-4">
+                <a href="{{ path('delete', {'id': article.id}) }}" class="btn btn-danger pull-right"
+                   data-toggle="tooltip" data-placement="right" title="Supprimer l'article">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+                <a href="{{ path('update', {'id': article.id}) }}" class="btn btn-info pull-right" data-toggle="tooltip"
+                   data-placement="top" title="Editer l'article">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a href="{{ path('unpublish', {'id': article.id}) }}" class="btn btn-warning pull-right"
+                   data-toggle="tooltip" data-placement="left" title="Retirer l'article de la publication">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/tooltip.js') }}"></script>
+{% endblock %}

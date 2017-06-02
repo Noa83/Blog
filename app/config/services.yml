@@ -4,7 +4,9 @@ parameters:
     #parameter_name: value
 
 services:
-    bdd_recording:
-        class: AppBundle\Services\BddRecording
+    gestion_article_dans_bdd:
+        class: AppBundle\Services\GestionArticleDansBdd
         arguments:
             - "@doctrine.orm.entity_manager"
+    compte_nombre_articles:
+        class: AppBundle\Services\CompteNombreArticles

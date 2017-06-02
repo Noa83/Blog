@@ -1,0 +1,32 @@
+{% extends 'baseBlog.html.twig' %}
+
+{% block lateral %}
+    {{ include('blogLateral.html.twig') }}
+{% endblock %}
+
+{% block body %}
+
+    {% for article in articlesList %}
+        <div class="col-sm-12 article_case">
+            <div class="col-sm-12">
+                <h3 class="col-sm-8">{{ article.title }}</h3>
+                <div class="pull-right">Publié le: {{ article.createdDate|date('d-m-Y') }}</div>
+            </div>
+            <div>
+                {% autoescape %}
+                    <p>{{ article.content|truncate(150)|raw }}</p>
+                {% endautoescape %}
+            </div>
+
+            <a href="{{ path('visu_article', {'id': article.id}) }}" class="btn btn-info pull-right">
+                <i class="glyphicon glyphicon-eye-open"></i>
+                Lire la suite...
+            </a>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}
+
+
+

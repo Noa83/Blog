@@ -15,7 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Article
 {
     /**
-     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article", cascade={"persist"})
      */
     private $commentaires;
 
@@ -45,17 +45,62 @@ class Article
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="published_date", type="date")
+     * @ORM\Column(name="created_date", type="date")
      */
-    private $publishedDate;
+    private $createdDate;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_date", nullable=true, type="date")
+     */
+    private $updatedDate;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published;
 
 
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+        $this->createdDate = new \Datetime();
+    }
 
-        $this->publishedDate = new \Datetime();
+    /**
+     * Add Commentaire
+     *
+     * @param \AppBundle\Entity\Commentaire $commentaire
+     *
+     * @return Article
+     */
+    public function addCommentaire(\AppBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires[] = $commentaire;
+        return $this;
+    }
+
+    /**
+     * Remove Commentaire
+     *
+     * @param \AppBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\AppBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires->removeElement($commentaire);
+    }
+
+    /**
+     * Get Commentaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
     }
 
     /**
@@ -117,28 +162,50 @@ class Article
     }
 
     /**
-     * Set publishedDate
-     *
-     * @param \DateTime $publishedDate
-     *
-     * @return Article
+     * @return \DateTime
      */
-    public function setPublishedDate($publishedDate)
+    public function getCreatedDate()
     {
-        $this->publishedDate = $publishedDate;
-
-        return $this;
+        return $this->createdDate;
     }
 
     /**
-     * Get publishedDate
-     *
-     * @return \DateTime
+     * @param \DateTime $createdDate
      */
-    public function getPublishedDate()
+    public function setCreatedDate($createdDate)
     {
-        return $this->publishedDate;
+        $this->createdDate = $createdDate;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
 
+    /**
+     * @param mixed $published
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedDate()
+    {
+        return $this->updatedDate;
+    }
+
+    /**
+     * @param \DateTime $updatedDate
+     */
+    public function setUpdatedDate($updatedDate)
+    {
+        $this->updatedDate = $updatedDate;
+    }
 }
