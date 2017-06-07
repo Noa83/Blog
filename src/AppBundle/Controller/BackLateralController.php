@@ -4,25 +4,21 @@ namespace AppBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Response;
 
 
 class BackLateralController extends Controller
 {
-    /**
-     * @Route("/auteur/numberOfPublished", name="numberOfPublished")
-     */
-    public function getNumberOfPublished()
+
+    public function getNumberOfArticlesAction()
     {
-        return new Response($this->get('number_of_articles')->getNumberOfArticles($this->getDoctrine()->getRepository('AppBundle:Article')->getArticlesList()));
+        $numberOfPublished = $this->get('number_of_articles')->getNumberOfArticles($this->getDoctrine()->getRepository('AppBundle:Article')->getArticlesList());
+        $numberOfUnpublished = $this->get('number_of_articles')->getNumberOfArticles($this->getDoctrine()->getRepository('AppBundle:Article')->getUnpublishedArticlesList());
+        dump($numberOfPublished);
+        return $this->render(
+            '::backLateral.html.twig',[
+                'numberOfPublished' => $numberOfPublished,
+                'numberOfUnpublished' => $numberOfUnpublished
+            ]);
     }
 
-    /**
-     * @Route("auteur/numberOfUnpublished", name="numberOfUnpublished")
-     */
-    public function getNumberOfUnpublished()
-    {
-        return new Response($this->get('number_of_articles')->getNumberOfArticles($this->getDoctrine()->getRepository('AppBundle:Article')->getUnpublishedArticlesList()));
-    }
 }

@@ -21,20 +21,26 @@ class ArticleVisualizationController extends Controller
     public function articleAction(Article $article, Request $request)
     {
         $articlesList =  $this->getDoctrine()->getRepository('AppBundle:Article')->getArticlesList();
+        $articleWithComments = $this->getDoctrine()->getRepository('AppBundle:Article')->findById($article);
+        dump($article);
+        dump($articleWithComments);
 
-//        dump($articlesList);
 
         $commentModel = new CommentModel();
         $commentForm = $this->get('form.factory')->create(CommentType::class, $commentModel);
 
         if ($request->isMethod('POST') && $commentForm->handleRequest($request)->isValid()) {
-            //à remplir.
-            dump($request);
+
+//            dump($request);
+//            dump($commentModel);
             $comment = new Comment();
-            $comment->setAuthor($commentModel);
-            $comment->setContent($commentModel);
+            $comment->setAuthor($commentModel->getAuthor());
+            $comment->setContent($commentModel->getContent());
+            $comment->setArticle($article);
+//            dump($comment);
 
             $article->addComment($comment);
+//            dump($article);
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();

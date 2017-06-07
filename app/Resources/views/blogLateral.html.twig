@@ -13,10 +13,10 @@
             <div class="collapse navbar-collapse" id="menu-navbar-collapse">
                 <ul class="nav nav-pills nav-stacked">
                     <h3>Chapitres précédents</h3>
-                    {% for article in articlesList %}
-                    <li><a href="{{ path('visu_article', {'id': article.id}) }}">
-                        {{ article.title }}</a></li><br>
-                    {% endfor %}
+                    {#{% for article in articlesList %}#}
+                    {#<li><a href="{{ path('visualization_article', {'id': article.id}) }}">#}
+                        {#{{ article.title }}</a></li><br>#}
+                    {#{% endfor %}#}
                 </ul>
             </div>
         </div>

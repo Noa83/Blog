@@ -13,7 +13,7 @@ class LoginController extends Controller
     public function loginAction()
     {
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->redirectToRoute('auteur_home_page');
+            return $this->redirectToRoute('author_home_page');
         }
 
         $authUtils = $this->get('security.authentication_utils');

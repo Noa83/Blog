@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\OneToMany;
 
+
 /**
  * Comment
  *
@@ -99,7 +100,7 @@ class Comment
      *
      * @param string $author
      *
-     * @return Commentaire
+     * @return Comment
      */
     public function setAuthor($author)
     {
@@ -123,7 +124,7 @@ class Comment
      *
      * @param string $content
      *
-     * @return Commentaire
+     * @return Comment
      */
     public function setContent($content)
     {
@@ -163,7 +164,7 @@ class Comment
      *
      * @param \DateTime $publishedDate
      *
-     * @return Commentaire
+     * @return Comment
      */
     public function setPublishedDate($publishedDate)
     {
@@ -180,6 +181,38 @@ class Comment
     public function getPublishedDate()
     {
         return $this->publishedDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param mixed $children
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param mixed $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
     }
 
     /**

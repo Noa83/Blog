@@ -1,8 +1,8 @@
 {% extends 'baseBlog.html.twig' %}
 
-{% block lateral %}
-    {{ include('backLateral.html.twig') }}
-{% endblock %}
+{#{% block lateral %}#}
+    {#{{ include('backLateral.html.twig') }}#}
+{#{% endblock %}#}
 
 {% block body %}
 <h4>Modification de l'article: {{ article.title }}</h4>
@@ -14,7 +14,7 @@
                 class="btn btn-default pull-right"/>
         </div>
 
-        {{ include('modalUpdate.html.twig') }}
+        {{ include(':Article_management:modalUpdate.html.twig') }}
 
     {{ form_end(formView) }}
 
