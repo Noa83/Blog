@@ -23,13 +23,4 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
-
-    public function  getArticleById($id)
-    {
-        return $this->_em->getRepository('AppBundle:Article')
-            ->findBy(
-                array(),
-                array('id' => $id)
-            );
-    }
 }

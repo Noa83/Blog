@@ -8,5 +8,9 @@ services:
         class: AppBundle\Services\ArticleManagementInBdd
         arguments:
             - "@doctrine.orm.entity_manager"
+    comments_management:
+            class: AppBundle\Services\CommentsManagement
+            arguments:
+                - "@doctrine.orm.entity_manager"
     number_of_articles:
         class: AppBundle\Services\NumberOfArticles

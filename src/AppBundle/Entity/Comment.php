@@ -19,7 +19,7 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity="Article", inversedBy="comments")
      *
-     * @ORM\JoinColumn(name="idArticle", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id_article", referencedColumnName="id")
      */
     private $article;
 
@@ -60,7 +60,6 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity="Comment", inversedBy="children")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
     private $parent;
 
@@ -96,7 +95,7 @@ class Comment
     }
 
     /**
-     * Set auteur
+     * Set author
      *
      * @param string $author
      *
@@ -110,7 +109,7 @@ class Comment
     }
 
     /**
-     * Get auteur
+     * Get author
      *
      * @return string
      */
@@ -120,7 +119,7 @@ class Comment
     }
 
     /**
-     * Set contenu
+     * Set content
      *
      * @param string $content
      *
@@ -134,7 +133,7 @@ class Comment
     }
 
     /**
-     * Get contenu
+     * Get content
      *
      * @return string
      */

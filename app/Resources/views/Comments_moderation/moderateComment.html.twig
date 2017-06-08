@@ -1,9 +1,26 @@
 {% extends 'baseBlog.html.twig' %}
 
-{% block lateral %}
-    {{ include('backLateral.html.twig') }}
-{% endblock %}
+{#{% block lateral %}#}
+    {#{{ include('backLateral.html.twig') }}#}
+{#{% endblock %}#}
 
 {% block body %}
-    <div>Moderate</div>
+
+        {% for comment in signaledComments %}
+            <div class="col-sm-12 article_case">
+                <p class="col-sm-6">Commentaire du: {{ comment.publishedDate|date('d-m-Y') }}</p>
+                <p class="col-sm-6">Par: {{ comment.author }}</p>
+                <p class="col-sm-12">Concernant le chapitre: {{ comment.article.title }}</p>
+                <p class="col-sm-12">{{ comment.content }}</p>
+                <a href="{{ path('validate', {'id': comment.id}) }}" class="btn btn-success pull-right">
+                    Valider ce commentaire
+                    <i class="glyphicon glyphicon-ok"></i>
+                </a>
+                <a href="{{ path('delete_comment', {'id': comment.id}) }}" class="btn btn-danger pull-right">
+                    <i class="glyphicon glyphicon-trash"></i>
+                    Supprimer ce commentaire
+                </a>
+            </div>
+        {% endfor %}
+
 {% endblock %}

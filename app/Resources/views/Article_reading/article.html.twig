@@ -1,5 +1,7 @@
 {% extends 'baseBlog.html.twig' %}
 
+{% import ':Article_reading/Macro:recursiveComments.html.twig' as macro %}
+
 {% block lateral %}
     {{ include('blogLateral.html.twig') }}
 {% endblock %}
@@ -23,49 +25,32 @@
             <i class="glyphicon glyphicon-chevron-left"></i>
             Chapitre précédent
         </a>
-        {#<button class="pull-right"><span class="glyphicon glyphicon-plus"></span> Commenter</button>#}
+        <button class="btn btn-primary pull-right"><i class="glyphicon glyphicon-pencil"></i> Commenter ce chapitre</button>
     </div>
     <div>
-        <div class="comment_form">
-            {{ form_start(formView, {'attr': {'class': 'form-horizontal', 'novalidate':'novalidate'}}) }}
+        {{ include(':Comments:addComment.html.twig') }}
+    </div>
+    <div>
+        {{ macro.recursiveComments(comments) }}
 
-            <div class="form-group">
-                <div class="col-sm-12">
-                    {{ form_errors(formView.author) }}
-                </div>
 
-                {{ form_label(formView.author, "Votre nom ou pseudo", {'label_attr': {'for':'author_label'}}) }}
 
-                <div class="col-sm-12">
-                    {{ form_widget(formView.author, {'attr': {'class': 'form-control', 'id':'author_label', 'placeholder':'Saisissez votre nom ou pseudo' }}) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    {{ form_errors(formView.content) }}
-                </div>
 
-                {{ form_label(formView.content, "Commentaire", {'label_attr': {'for':'comment_label'}}) }}
 
-                <div class="col-sm-12">
-                    {{ form_widget(formView.content, {'attr': {'class': 'form-control', 'id':'comment_label', 'placeholder':'Saisissez votre commentaire' }}) }}
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <input id="publish" type="submit" value="Publier" class="btn btn-primary pull-right"/>
-            </div>
 
-            {{ form_end(formView) }}
-        </div>
-        {#{% for comment in commentsList %}#}
+
+
+
+
+        {#{% for comment in comments %}#}
             {#<div>#}
-                {#<p>{{ comment.auteur }}</p>#}
+                {#<p>{{ comment.author }}</p>#}
                 {#<p>Publié le: {{ comment.publishedDate|date('d-m-Y') }}</p>#}
-                {#<p>{{ comment.contenu }}</p>#}
-                {#<button>signaler ce commentaire</button>#}
+                {#<p>{{ comment.content }}</p>#}
+                {#<a href="{{ path('signal', {'id': comment.id}) }}" class="btn btn-warning">signaler ce commentaire</a>#}
             {#</div>#}
-
         {#{% endfor %}#}
     </div>
 
 {% endblock %}
+
