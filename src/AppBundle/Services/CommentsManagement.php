@@ -23,6 +23,7 @@ class CommentsManagement
         $comment->setContent($commentModel->getContent());
         $comment->setArticle($article);
         $article->addComment($comment);
+        
         return $article;
     }
 

@@ -10,12 +10,11 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ArticleRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class Article
 {
     /**
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="article", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="article", cascade={"persist"})
      */
     private $comments;
 
@@ -63,11 +62,14 @@ class Article
      */
     private $published;
 
-
+    /**
+     * Article constructor.
+     * @param $comments
+     */
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->createdDate = new \Datetime();
+        $this->createdDate = new \DateTime();
     }
 
     /**
@@ -80,9 +82,9 @@ class Article
     public function addComment(\AppBundle\Entity\Comment $comment)
     {
         $this->comments[] = $comment;
+
         return $this;
     }
-
     /**
      * Remove Comment
      *
@@ -92,7 +94,6 @@ class Article
     {
         $this->comments->removeElement($comment);
     }
-
     /**
      * Get Comments
      *
@@ -104,8 +105,6 @@ class Article
     }
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -114,22 +113,14 @@ class Article
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Article
+     * @param int $id
      */
-    public function setTitle($title)
+    public function setId($id)
     {
-        $this->title = $title;
-
-        return $this;
+        $this->id = $id;
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
     public function getTitle()
@@ -138,27 +129,27 @@ class Article
     }
 
     /**
-     * Set content
-     *
-     * @param string $content
-     *
-     * @return Article
+     * @param string $title
      */
-    public function setContent($content)
+    public function setTitle($title)
     {
-        $this->content = $content;
-
-        return $this;
+        $this->title = $title;
     }
 
     /**
-     * Get content
-     *
      * @return string
      */
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * @param string $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
     }
 
     /**
@@ -178,22 +169,6 @@ class Article
     }
 
     /**
-     * @return mixed
-     */
-    public function getPublished()
-    {
-        return $this->published;
-    }
-
-    /**
-     * @param mixed $published
-     */
-    public function setPublished($published)
-    {
-        $this->published = $published;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getUpdatedDate()
@@ -208,4 +183,21 @@ class Article
     {
         $this->updatedDate = $updatedDate;
     }
+
+    /**
+     * @return bool
+     */
+    public function isPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param bool $published
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+    }
+
 }

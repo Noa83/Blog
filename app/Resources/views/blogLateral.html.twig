@@ -12,11 +12,11 @@
 
             <div class="collapse navbar-collapse" id="menu-navbar-collapse">
                 <ul class="nav nav-pills nav-stacked">
-                    <h3>Chapitres précédents</h3>
-                    {#{% for article in articlesList %}#}
-                    {#<li><a href="{{ path('visualization_article', {'id': article.id}) }}">#}
-                        {#{{ article.title }}</a></li><br>#}
-                    {#{% endfor %}#}
+                    <h3 class="pages_titles text-center">Chapitres précédents</h3>
+                    {% for chapter in chaptersList %}
+                    <li><a href="{{ path('visualization_article', {'id': chapter.id}) }}">
+                        {{ chapter.title }} <p class="date_chapter pull-right">Créé le: {{ chapter.createdDate|date('d-m-Y') }}</p></a></li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

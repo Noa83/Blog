@@ -1,0 +1,19 @@
+{% macro recursiveComments(comments, level) %}
+    {% import _self as self %}
+
+    {% for comment in comments %}
+        <div class="col-sm-offset-{{ level }} col-sm-9">
+            <div class="col-sm-12 macro_div_{{ level }} well">
+                <p class="col-sm-12"><strong>Publié le:</strong> {{ comment.publishedDate|date('d-m-Y') }}
+                    <strong>Par:</strong> {{ comment.author }}</p>
+                <p class="col-sm-12">{{ comment.content }}</p>
+                <a id="comment_reply" class="btn btn-xs btn-delete pull-right">Répondre à ce commentaire</a>
+                <a href="{{ path('signal', {'id': comment.id}) }}" class="btn btn-xs btn-next pull-right" id="comment_{{ comment.id }}">Signaler ce
+                    commentaire</a>
+            </div>
+        </div>
+
+        {{ self.recursiveComments(comment.children, level+1) }}
+
+    {% endfor %}
+{% endmacro %}

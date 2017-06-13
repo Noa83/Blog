@@ -3,8 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OneToMany;
+
 
 
 /**
@@ -12,14 +13,12 @@ use Doctrine\ORM\Mapping\OneToMany;
  *
  * @ORM\Table(name="comment")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class Comment
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Article", inversedBy="comments")
      *
-     * @ORM\JoinColumn(name="id_article", referencedColumnName="id")
      */
     private $article;
 
@@ -54,12 +53,12 @@ class Comment
     private $publishedDate;
 
     /**
-     * @OneToMany(targetEntity="Comment", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="parent")
      */
     private $children;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Comment", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Comment", inversedBy="children")
      */
     private $parent;
 
@@ -143,7 +142,9 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * Get article
+     *
+     * @return Article
      */
     public function getArticle()
     {
@@ -151,11 +152,17 @@ class Comment
     }
 
     /**
-     * @param mixed $article
+     * Set article
+     *
+     * @param Article $article
+     *
+     * @return Comment
      */
     public function setArticle($article)
     {
         $this->article = $article;
+
+        return $this;
     }
 
     /**
@@ -183,20 +190,35 @@ class Comment
     }
 
     /**
-     * @return mixed
+     * Add children
+     *
+     * @param Comment $children
+     *
+     * @return Comment
+     */
+    public function addChildren(Comment $children)
+    {
+        $this->children[] = $children;
+        $this->setParent($this);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
      */
     public function getChildren()
     {
         return $this->children;
     }
 
-    /**
-     * @param mixed $children
-     */
-    public function setChildren($children)
-    {
-        $this->children = $children;
-    }
+//    /**
+//     * @param mixed $children
+//     */
+//    public function setChildren($children)
+//    {
+//        $this->children = $children;
+//    }
 
     /**
      * @return mixed

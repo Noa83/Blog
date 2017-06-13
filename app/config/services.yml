@@ -1,5 +1,3 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/service_container.html
 parameters:
     #parameter_name: value
 
@@ -8,9 +6,17 @@ services:
         class: AppBundle\Services\ArticleManagementInBdd
         arguments:
             - "@doctrine.orm.entity_manager"
+
     comments_management:
             class: AppBundle\Services\CommentsManagement
             arguments:
                 - "@doctrine.orm.entity_manager"
-    number_of_articles:
-        class: AppBundle\Services\NumberOfArticles
+
+    number_of_something:
+        class: AppBundle\Services\NumberOfSomething
+
+    mail:
+            class: AppBundle\Services\MailService
+            arguments:
+                - "@mailer"
+                - "@twig"

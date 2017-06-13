@@ -1,11 +1,15 @@
 {% extends 'baseBlog.html.twig' %}
 
-{#{% block lateral %}#}
-    {#{{ include('backLateral.html.twig') }}#}
-{#{% endblock %}#}
-
 {% block body %}
 <h4>Modification de l'article: {{ article.title }}</h4>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 
     {{ include(':Article_management:formTinyMCEPreRempli.html.twig') }}
         
@@ -24,6 +28,5 @@
             Retour à la liste des articles
         </a>
     </div>
-
 
 {% endblock %}

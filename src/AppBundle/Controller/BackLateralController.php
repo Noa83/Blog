@@ -11,13 +11,14 @@ class BackLateralController extends Controller
 
     public function getNumberOfArticlesAction()
     {
-        $numberOfPublished = $this->get('number_of_articles')->getNumberOfArticles($this->getDoctrine()->getRepository('AppBundle:Article')->getArticlesList());
-        $numberOfUnpublished = $this->get('number_of_articles')->getNumberOfArticles($this->getDoctrine()->getRepository('AppBundle:Article')->getUnpublishedArticlesList());
-        dump($numberOfPublished);
+        $numberOfPublished = $this->get('number_of_something')->getNumberOfSomething($this->getDoctrine()->getRepository('AppBundle:Article')->getArticlesList());
+        $numberOfUnpublished = $this->get('number_of_something')->getNumberOfSomething($this->getDoctrine()->getRepository('AppBundle:Article')->getUnpublishedArticlesList());
+        $numberOfSignaled = $this->get('number_of_something')->getNumberOfSomething($this->getDoctrine()->getRepository('AppBundle:Comment')->getSignaledComments());
         return $this->render(
             '::backLateral.html.twig',[
                 'numberOfPublished' => $numberOfPublished,
-                'numberOfUnpublished' => $numberOfUnpublished
+                'numberOfUnpublished' => $numberOfUnpublished,
+                'numberOfSignaled' => $numberOfSignaled
             ]);
     }
 

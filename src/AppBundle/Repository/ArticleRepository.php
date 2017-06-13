@@ -23,4 +23,23 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findRootComments($articleId)
+    {
+        $results = $this->createQueryBuilder('a')
+            ->addSelect('c')
+//            ->addSelect('children')
+            ->join('a.comments', 'c')
+//            ->join('c.children', 'children')
+            ->where('c.parent IS NULL')
+            ->andWhere('a.id = :id')
+            ->setParameter('id', $articleId)
+            ->getQuery()
+            ->getSingleResult();
+
+        if (empty($results)) {
+            throw new \Exception();
+        }
+        return $results;
+    }
 }

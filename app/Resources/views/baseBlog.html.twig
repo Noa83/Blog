@@ -8,24 +8,28 @@
 
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/laterals.css') }}"/>
+        {% block stylesheetsChildren %}{% endblock %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
               crossorigin="anonymous">
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     {% endblock %}
 </head>
 
 
-<body>
+<body id="body">
 <div class="container-fluid" id="container-content">
-    <div id="header" class="row">
-        <div class="col-sm-12">
-            <img id="logo_entete" src="{{ asset('images/Plume-ecrivain.png') }}" alt="banniere" class="img-responsive">
+    <div id="header" class="col-sm-12">
+        <div class="col-sm-12" id="logo_entete">
+            <div id="blog_title" class="text-center">Billet pour l'Alaska</div>
         </div>
     </div>
 
-    <div id="top_menu">
-        <nav class="navbar navbar-default">
+    <div id="top_menu" class="col-sm-12">
+        <nav class="navbar navbar-default" id="navbar">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -37,11 +41,9 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="{{ path('home_page') }}">Accueil<span
+                        <li class="active" id="active_color"><a href="{{ path('home_page') }}">Accueil<span
                                         class="sr-only">(current)</span></a></li>
                         <li><a href="{{ path('author') }}">L'Auteur</a></li>
                         <li><a href="{{ path('contact') }}">Contact</a></li>
@@ -50,38 +52,24 @@
             </div><!-- /.container-fluid -->
         </nav>
     </div>
-
     <div class="col-sm-3" id="lateral_bar">
         {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_AUTHOR') %}
-            {#{{ render(controller('AppBundle:BackLateral:getNumberOfArticles')) }}#}
-            {{ include('backLateral.html.twig') }}
+            {{ render(controller('AppBundle:BackLateral:getNumberOfArticles')) }}
         {% else %}
-            {{ include('blogLateral.html.twig') }}
-
+            {{ render(controller('AppBundle:BlogLateral:getChaptersList', { 'max': 10 })) }}
         {% endif %}
-        {#{% block lateral %}#}
-        {#{% endblock %}#}
-
     </div>
     <div class="col-sm-9" id="content">
         {% block body %}
         {% endblock %}
     </div>
-
 </div>
-
-<br>
-<div>
-    <hr>
-</div>
-
 <footer>
-    <div class="row" id="footer">
-        <div class="col-sm-offset-8 col-sm-2" id="credits">
-            <a href="#">Crédits</a>
-        </div>
-        <div class="col-sm-2" id="administration">
-            <a href="{{ path('login') }}">Administration</a>
+    <div class="col-sm-12" id="footer">
+        <div class="col-sm-12" id="administration">
+            <div class="col-sm-2 pull-right">
+                <a href="{{ path('login') }}">Espace Auteur</a>
+            </div>
         </div>
     </div>
 </footer>
