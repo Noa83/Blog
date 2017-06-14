@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 
-
+use AppBundle\Entity\Article;
 use AppBundle\Entity\Comment;
 use AppBundle\Model\CommentModel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -14,24 +14,27 @@ use AppBundle\Form\Type\CommentType;
 class CommentsManagementController extends Controller
 {
     /**
-     * @Route("/comments/add/{id}", name="add_comment", requirements={"id" = "\d+"})
+     * @Route("/comments/add/{id}/{comment_id}", name="add_comment", requirements={"id" = "\d+"}, defaults={"comment_id" = null})
      */
-    public function addCommentWithAjax(Request $request)
+    public function addComment(Request $request, Article $article)
     {
 
         $commentModel = new CommentModel();
         $commentForm = $this->get('form.factory')->create(CommentType::class, $commentModel);
         $commentForm->handleRequest($request);
-        dump($commentModel);
-        dump($commentForm);
+        $commentId = $request->attributes->get('comment_id');
 
-           dump($commentModel->setContent($commentForm->getData()));
+        if ( $commentId != null ){
+        $this->get('article_management_in_bdd')->executeActionOnArticle($this->get('comments_management')
+            ->addComment($commentModel, $article, $this->getDoctrine()->getRepository('AppBundle:Comment')
+                ->find($commentId)));
+        }else{
+            $this->get('article_management_in_bdd')->executeActionOnArticle($this->get('comments_management')
+                ->addRootComment($commentModel, $article));
+        }
 
-
-//        $this->get('article_management_in_bdd')->executeActionOnArticle($this->get('comments_management')->addComment($commentModel, $article));
-//        $this->addFlash('success', 'Ce commentaire a été signalé à l\'auteur');
-//
-//        return $this->redirectToRoute('visualization_article', ['id' => $article->getId()]);
+        $this->addFlash('success', 'Ce commentaire a été signalé à l\'auteur');
+        return $this->redirectToRoute('visualization_article', ['id' => $article->getId()]);
     }
 
     /**

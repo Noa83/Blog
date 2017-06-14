@@ -8,7 +8,6 @@
 
 {% block body %}
     <div class="col-sm-12 article_case">
-
         <h1 class="col-sm-8 pages_titles">{{ article.title }}</h1>
         <div class="pull-right">Publié le: {{ article.createdDate|date('d-m-Y') }}</div>
 
@@ -18,9 +17,11 @@
                 <i class="glyphicon glyphicon-home"></i>
                 Retour à la liste des articles
             </a>
-            <button class="btn btn-status pull-right" id="add_comment"><i class="glyphicon glyphicon-pencil"></i> Commenter ce chapitre
+            <button class="btn btn-status pull-right" id="add_comment"><i class="glyphicon glyphicon-pencil"></i>
+                Commenter ce chapitre
             </button>
         </div>
+        {{ include(':Basics_Components:flashMessages.html.twig') }}
     </div>
     <div class="col-sm-12" id="comment_title">
         <h3 class="pages_titles">Commentaires des lecteurs</h3>
@@ -36,13 +37,5 @@
     </div>
 {% endblock %}
 {% block javascripts %}
-
     <script src="{{ asset('js/showCommentForm.js') }}"></script>
-    {#<script>#}
-        {#$(document).ready(function(){#}
-            {#$('#comment_reply').click(function() {#}
-                {#$('#comment_field').clone([true]).appendTo($('#comment_reply'));#}
-            {#})#}
-        {#});#}
-{#//    </script>#}
 {% endblock %}

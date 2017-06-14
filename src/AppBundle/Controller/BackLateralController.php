@@ -15,7 +15,7 @@ class BackLateralController extends Controller
         $numberOfUnpublished = $this->get('number_of_something')->getNumberOfSomething($this->getDoctrine()->getRepository('AppBundle:Article')->getUnpublishedArticlesList());
         $numberOfSignaled = $this->get('number_of_something')->getNumberOfSomething($this->getDoctrine()->getRepository('AppBundle:Comment')->getSignaledComments());
         return $this->render(
-            '::backLateral.html.twig',[
+            ':Basics_Components:backLateral.html.twig',[
                 'numberOfPublished' => $numberOfPublished,
                 'numberOfUnpublished' => $numberOfUnpublished,
                 'numberOfSignaled' => $numberOfSignaled

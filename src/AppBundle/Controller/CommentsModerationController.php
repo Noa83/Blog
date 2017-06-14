@@ -40,7 +40,7 @@ class CommentsModerationController extends Controller
      */
     public function deleteCommentAction(Comment $comment)
     {
-        $this->$this->get('comments_management')->deleteComment($comment);
+        $this->get('comments_management')->deleteComment($comment);
         $this->addFlash('success', 'Ce commentaire a été supprimé');
 
         return $this->redirectToRoute('moderate');

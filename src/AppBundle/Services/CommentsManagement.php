@@ -16,14 +16,26 @@ class CommentsManagement
         $this->manager = $manager;
     }
 
-    public function addComment(CommentModel $commentModel, Article $article)
+    public function addRootComment(CommentModel $commentModel, Article $article)
     {
         $comment = new Comment();
         $comment->setAuthor($commentModel->getAuthor());
         $comment->setContent($commentModel->getContent());
         $comment->setArticle($article);
         $article->addComment($comment);
-        
+
+        return $article;
+    }
+
+    public function addComment(CommentModel $commentModel, Article $article, Comment $parentComment)
+    {
+        $comment = new Comment();
+        $comment->setAuthor($commentModel->getAuthor());
+        $comment->setContent($commentModel->getContent());
+        $comment->setArticle($article);
+        $comment->setParent($parentComment);
+        $article->addComment($comment);
+
         return $article;
     }
 

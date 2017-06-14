@@ -13,7 +13,7 @@ class BlogLateralController extends Controller
     {
         $chaptersList = $this->getDoctrine()->getRepository('AppBundle:Article')->getArticlesList();
         return $this->render(
-            '::blogLateral.html.twig',[
+            ':Basics_Components:blogLateral.html.twig',[
             'chaptersList' => $chaptersList
         ]);
     }

@@ -11,13 +11,7 @@
     {{ include(':Create_Article:formTinyMCEEmpty.html.twig') }}
 
     <div class="col-md-12">
-        {% for type, flash_messages in app.session.flashBag.all %}
-            {% for flash_message in flash_messages %}
-                <div class="alert-{{ type }} text-center">
-                    {{ flash_message }}
-                </div>
-            {% endfor %}
-        {% endfor %}
+        {{ include(':Basics_Components:flashMessages.html.twig') }}
     </div>
 
     <div class="col-sm-12">
@@ -32,7 +26,7 @@
     </div>
     {{ form_end(formView) }}
 
-
+    {{ include(':Basics_Components:flashMessages.html.twig') }}
 
 {% endblock %}
 

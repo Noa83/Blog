@@ -13,7 +13,7 @@ div.macro_div_1.well, div.macro_div_2.well, div.macro_div_3.well{
 }
 
 /*Comment field*/
-div#comment_field{
+div#comment_form{
     display: none;
 }
 div#comment_buttons{

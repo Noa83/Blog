@@ -27,6 +27,7 @@
                 <div class="text-center">
                     <button class="btn btn-delete" type="submit">Envoyer</button>
                 </div>
+                {{ include(':Basics_Components:flashMessages.html.twig') }}
             </div>
             {{ form_rest(contactForm) }}
             {{ form_end(contactForm) }}
