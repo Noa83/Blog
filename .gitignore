@@ -17,7 +17,6 @@
 /web/bundles/
 .idea/workspace.xml
 /web/config.php
-.idea
 /app/.htaccess
 /src/.htaccess
 /web/.htaccess
