@@ -10,14 +10,13 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ArticleRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class Article
 {
     /**
-     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="article", cascade={"persist"})
      */
-    private $commentaires;
+    private $comments;
 
     /**
      * @var int
@@ -45,22 +44,67 @@ class Article
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="published_date", type="date")
+     * @ORM\Column(name="created_date", type="date")
      */
-    private $publishedDate;
+    private $createdDate;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_date", nullable=true, type="date")
+     */
+    private $updatedDate;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published;
 
+    /**
+     * Article constructor.
+     * @param $comments
+     */
     public function __construct()
     {
-        $this->commentaires = new ArrayCollection();
-
-        $this->publishedDate = new \Datetime();
+        $this->comments = new ArrayCollection();
+        $this->createdDate = new \DateTime();
     }
 
     /**
-     * Get id
+     * Add Comment
      *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return Article
+     */
+    public function addComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+    /**
+     * Remove Comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+    /**
+     * Get Comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -69,22 +113,14 @@ class Article
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Article
+     * @param int $id
      */
-    public function setTitle($title)
+    public function setId($id)
     {
-        $this->title = $title;
-
-        return $this;
+        $this->id = $id;
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
     public function getTitle()
@@ -93,22 +129,14 @@ class Article
     }
 
     /**
-     * Set content
-     *
-     * @param string $content
-     *
-     * @return Article
+     * @param string $title
      */
-    public function setContent($content)
+    public function setTitle($title)
     {
-        $this->content = $content;
-
-        return $this;
+        $this->title = $title;
     }
 
     /**
-     * Get content
-     *
      * @return string
      */
     public function getContent()
@@ -117,28 +145,59 @@ class Article
     }
 
     /**
-     * Set publishedDate
-     *
-     * @param \DateTime $publishedDate
-     *
-     * @return Article
+     * @param string $content
      */
-    public function setPublishedDate($publishedDate)
+    public function setContent($content)
     {
-        $this->publishedDate = $publishedDate;
-
-        return $this;
+        $this->content = $content;
     }
 
     /**
-     * Get publishedDate
-     *
      * @return \DateTime
      */
-    public function getPublishedDate()
+    public function getCreatedDate()
     {
-        return $this->publishedDate;
+        return $this->createdDate;
     }
 
+    /**
+     * @param \DateTime $createdDate
+     */
+    public function setCreatedDate($createdDate)
+    {
+        $this->createdDate = $createdDate;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedDate()
+    {
+        return $this->updatedDate;
+    }
+
+    /**
+     * @param \DateTime $updatedDate
+     */
+    public function setUpdatedDate($updatedDate)
+    {
+        $this->updatedDate = $updatedDate;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param bool $published
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+    }
 
 }

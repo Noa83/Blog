@@ -1,0 +1,30 @@
+{% extends 'baseBlog.html.twig' %}
+
+{% block body %}
+
+    {% for article in unpublishedArticlesList %}
+        <div class="col-sm-12 article_case">
+            <h4 class="col-sm-8">
+                {{ article.title }}
+            </h4>
+            <div class="col-sm-4">
+                <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-delete pull-right"><a
+                            data-toggle="tooltip" data-placement="right" title="Supprimer l'article"> </a><i
+                            class="glyphicon glyphicon-trash"></i></button>
+                {{ include(':Author_home_page:modalDelete.html.twig') }}
+                <a href="{{ path('update', {'id': article.id}) }}" class="btn btn-edit pull-right" data-toggle="tooltip"
+                   data-placement="top" title="Editer l'article">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a href="{{ path('publish', {'id': article.id}) }}" class="btn btn-status pull-right"
+                   data-toggle="tooltip" data-placement="left" title="Publier l'article">
+                    <i class="glyphicon glyphicon-check"></i>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/tooltip.js') }}"></script>
+{% endblock %}

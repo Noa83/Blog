@@ -1,0 +1,24 @@
+/*Macro*/
+div.macro_div_1.well{
+    background-color: rgba(144, 189, 255, 0.3);
+}
+div.macro_div_2.well{
+    background-color: rgba(130, 170, 229, 0.3);
+}
+div.macro_div_3.well{
+    background-color: rgba(72, 95, 127, 0.3);
+}
+div.macro_div_1.well, div.macro_div_2.well, div.macro_div_3.well{
+    box-shadow: 1px 1px 1px #242F40;
+}
+
+/*Comment field*/
+div#comment_form{
+    display: none;
+}
+div#comment_buttons{
+    margin-bottom: 25px;
+}
+div#comment_title{
+    margin-bottom: 25px;
+}

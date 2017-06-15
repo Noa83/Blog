@@ -1,0 +1,20 @@
+{% extends '::baseBlog.html.twig'%}
+
+{% block stylesheetsChildren %}
+    <link rel="stylesheet" href="{{ asset('css/errors.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid" id="error_bg">
+        <div class="col-md-12" id="opal_bg">
+            <div class="col-md-12 text-center">
+                <h1 class="col-md-12 pages_titles">Page non trouvée</h1><br>
+                <p class="col-md-12">La page que vous avez demandé n'existe pas...</p>
+                <hr class="col-md-11">
+                <div class="col-md-12 text-center">
+                    <a href="{{ path('home_page') }}" class="btn btn-return">Retourner à l'accueil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'baseBlog.html.twig' %}
+
+{% import ':Article_reading/Macro:recursiveComments.html.twig' as macro %}
+
+{% block stylesheetsChildren %}
+    <link rel="stylesheet" href="{{ asset('css/articleVisualization.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <div class="col-sm-12 article_case">
+        <h1 class="col-sm-8 pages_titles">{{ article.title }}</h1>
+        <div class="pull-right">Publié le: {{ article.createdDate|date('d-m-Y') }}</div>
+
+        <div class="col-sm-12">{{ article.content|raw }}</div>
+        <div class="col-sm-12 buttons">
+            <a href="{{ path('home_page') }}" class="btn btn-edit pull-right">
+                <i class="glyphicon glyphicon-home"></i>
+                Retour à la liste des articles
+            </a>
+            <button class="btn btn-status pull-right" id="add_comment"><i class="glyphicon glyphicon-pencil"></i>
+                Commenter ce chapitre
+            </button>
+        </div>
+    </div>
+    <div class="col-sm-12" id="comment_title">
+        <h3 class="pages_titles">Commentaires des lecteurs</h3>
+        {% if commentError is not empty %}
+            <div class="col-sm-offset-1">{{ commentError }}</div>
+        {% endif %}
+    </div>
+    <div id="comment_field">
+        {{ include(':Comments:addComment.html.twig') }}
+    </div>
+    <div>
+        {{ macro.recursiveComments(comments, 1) }}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/showCommentForm.js') }}"></script>
+{% endblock %}

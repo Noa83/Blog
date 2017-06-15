@@ -3,16 +3,22 @@
 namespace AppBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * CommentModel
- *
- * @ORM\MappedSuperClass
- *
  */
 class CommentModel
 {
+    /**
+     * @Assert\NotBlank(message = "Vous devez renseigner votre nom ou votre pseudo")
+     */
     private $author;
+
+    /**
+     * @Assert\NotBlank(message = "Votre commentaire ne peut être vide")
+     */
+    private $content;
 
     /**
      * @return mixed
@@ -45,8 +51,4 @@ class CommentModel
     {
         $this->content = $content;
     }
-    private $content;
-
-
-
 }

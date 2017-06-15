@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Billet pour l'Alaska{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/laterals.css') }}"/>
+        {% block stylesheetsChildren %}{% endblock %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    {% endblock %}
+</head>
+
+
+<body id="body">
+<div class="container-fluid" id="container-content">
+    <div id="header" class="col-sm-12">
+        <div class="col-sm-12" id="logo_entete">
+            <div id="blog_title" class="text-center">Billet pour l'Alaska</div>
+        </div>
+    </div>
+
+    <div id="top_menu" class="col-sm-12">
+        <nav class="navbar navbar-default" id="navbar">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active" id="active_color"><a href="{{ path('home_page') }}">Accueil<span
+                                        class="sr-only">(current)</span></a></li>
+                        <li><a href="{{ path('author') }}">L'Auteur</a></li>
+                        <li><a href="{{ path('contact') }}">Contact</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+    <div class="col-sm-3" id="lateral_bar">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_AUTHOR') %}
+            {{ render(controller('AppBundle:BackLateral:getNumberOfArticles')) }}
+        {% else %}
+            {{ render(controller('AppBundle:BlogLateral:getChaptersList', { 'max': 5 })) }}
+        {% endif %}
+    </div>
+    <div class="col-sm-9" id="content">
+        {#{{ include (':Basics_Components:flashMessages.html.twig') }}#}
+        {% block body %}
+        {% endblock %}
+    </div>
+</div>
+<footer>
+    <div class="col-sm-12" id="footer">
+        <div class="col-sm-12" id="administration">
+            <div class="col-sm-2 pull-right">
+                <a href="{{ path('login') }}">Espace Auteur</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

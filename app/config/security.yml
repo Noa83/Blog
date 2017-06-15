@@ -9,7 +9,7 @@ security:
         in_memory:
             memory:
                 users:
-                    admin: { password: alaska, roles: [ROLE_ADMIN] }
+                    admin: { password: '%admin_password%', roles: [ROLE_ADMIN] }
 
     firewalls:
         dev:
@@ -22,7 +22,7 @@ security:
             form_login:
                 login_path: login
                 check_path: login_check
-                default_target_path: /author/index_back
+                default_target_path: /author/
             logout:
                 path: logout
                 target: /

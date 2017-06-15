@@ -1,0 +1,21 @@
+{% extends 'baseBlog.html.twig' %}
+
+{% block body %}
+
+    <h1 class="col-md-12 text-center pages_titles">Rédiger un nouveau chapitre</h1>
+
+    {{ include(':Create_Article:formTinyMCEEmpty.html.twig') }}
+
+    <div class="col-sm-12">
+        <input type="button" data-toggle="modal" data-target="#myModal" value="Publier"
+               class="btn btn-status pull-right"/>
+    {{ include(':Create_Article:modalPublish.html.twig') }}
+        <input id="publish" type="submit" name="submitAction" value="Enregistrer" class="btn btn-edit pull-right"/>
+    </div>
+    {{ form_end(formView) }}
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+<div class="comment_form" id="comment_form">
+    {{ form_start(formView, {'action': path('add_comment', {'id' : article.id}), 'method': 'POST'}, {'attr': {'class': 'form-horizontal', 'novalidate':'novalidate'}}) }}
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            {{ form_errors(formView.author) }}
+        </div>
+
+        {{ form_label(formView.author, "Votre nom ou pseudo", {'label_attr': {'for':'author_label'}}) }}
+
+        <div class="col-sm-12">
+            {{ form_widget(formView.author, {'attr': {'class': 'form-control', 'id':'author_label', 'placeholder':'Saisissez votre nom ou pseudo' }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            {{ form_errors(formView.content) }}
+        </div>
+
+        {{ form_label(formView.content, "Commentaire", {'label_attr': {'for':'comment_label'}}) }}
+
+        <div class="col-sm-12">
+            {{ form_widget(formView.content, {'attr': {'class': 'form-control', 'id':'comment_label', 'placeholder':'Saisissez votre commentaire' }}) }}
+        </div>
+    </div>
+    <div class="col-sm-12" id="comment_buttons">
+        <input type="button" data-toggle="modal" data-target="#myModal" value="Publier"
+               class="btn btn-next pull-right"/>
+        {{ include(':Article_reading:modalConfirmPublishComment.html.twig') }}
+        <input id="cancel_comment" type="button" value="Annuler" class="btn btn-return pull-right"/>
+    </div>
+
+    {{ form_end(formView) }}
+</div>
+

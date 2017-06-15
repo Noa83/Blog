@@ -1,0 +1,59 @@
+<div class="article_form">
+    {{ form_start(formView, {'attr': {'class': 'form-horizontal', 'novalidate':'novalidate'}}) }}
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            {{ form_errors(formView.title) }}
+        </div>
+
+        {{ form_label(formView.title, "Titre du Chapitre", {'label_attr': {'for':'title_label'}}) }}
+
+        <div class="col-sm-12">
+            {{ form_widget(formView.title, {'attr': {'class': 'form-control', 'id':'title_label', 'value':( article.title ) }}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            {{ form_errors(formView.content) }}
+        </div>
+
+        {{ form_label(formView.content, "Contenu du Chapitre", {'label_attr': {'for':'content'}}) }}
+
+        <div class="col-sm-12">
+            <script src="//cloud.tinymce.com/stable/tinymce.min.js?apiKey={{ tinyMceApiKey }}"></script>
+            <script>tinymce.init({selector: 'textarea',
+                    height: 500,
+                    theme: 'modern',
+                    plugins: [
+                        'advlist autolink lists link charmap print preview hr anchor pagebreak',
+                        'searchreplace wordcount visualblocks visualchars code fullscreen',
+                        'insertdatetime nonbreaking save table contextmenu directionality',
+                        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+                    ],
+                    toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                    toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+                    image_advtab: true,
+                    templates: [
+                        { title: 'Test template 1', content: 'Test 1' },
+                        { title: 'Test template 2', content: 'Test 2' }
+                    ],
+                    content_css: [
+                        '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                        '//www.tinymce.com/css/codepen.min.css'
+                    ]
+                });</script>
+            <script type="text/javascript">
+                window.onload = function() {
+                    var body = '{{ article.content | e('js') }}';
+                    tinyMCE.activeEditor.setContent( body );
+                };
+            </script>
+            {{ form_widget(formView.content, {'attr': {'class': 'form-control','id':'content', 'required':'false', 'row':'15' }}) }}
+        </div>
+    </div>
+    <br>
+
+</div>
+<br>
+

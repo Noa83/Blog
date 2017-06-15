@@ -1,8 +1,134 @@
-div.article_case{
-    border: 1px solid lightblue;
-    border-radius: 15px;
+/*General*/
+body#body {
+    font-family: 'Roboto', sans-serif;
+}
+
+div.article_case {
+    border: 1px solid #90BDFF;
+    border-radius: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
+}
+div#container-content{
+    padding-bottom: 30px;
+}
+
+/*Entete Blog*/
+#logo_entete {
+    background-image: url("../images/alaska.jpg");
+    background-position-y: center;
+    min-height: 300px;
+}
+
+#blog_title {
+    font-family: Lobster, cursive;
+    color: white;
+    font-size: 125px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-shadow: 2px 2px 2px #242F40;
+}
+/*Footer*/
+div#administration.col-sm-12{
+    border-top: 4px solid #242F40;
+    padding: 20px 0 20px 0;
+    color: #242F40;
+    font-size: larger;
+    font-weight: bold;
+}
+div#footer.col-sm-12{
+    padding: 0 30px 0 30px;
+}
+/*Pages*/
+.pages_titles{
+    font-family: Lobster, cursive;
+    margin-bottom: 40px;
+}
+
+/*Navbar*/
+.navbar-default#navbar {
+    background-color: #485F7F;
+}
+
+.navbar-default#navbar .navbar-nav > li > a {
+    color: white;
+    font-size: medium;
+    text-shadow: 1px 1px 1px #242F40;
+}
+
+.navbar-default#navbar .navbar-nav > .active > a, .navbar-default#navbar .navbar-nav > .active > a:focus,
+.navbar-default#navbar .navbar-nav > .active > a:hover {
+    background-color: #82AAE5;
+    color: white;
+}
+
+/*Boutons*/
+
+div.buttons{
+    margin-top: 40px;
+}
+.btn.btn-delete:hover, .btn.btn-edit:hover, .btn.btn-status:hover,
+.btn.btn-return:hover, .btn.btn-next:hover, .btn.btn-delete:focus, .btn.btn-edit:focus, .btn.btn-status:focus, .btn.btn-return:focus, .btn.btn-next:focus {
+    color: white;
+}
+
+.btn-delete, .btn-edit, .btn-status, .btn-return, .btn-next{
+    margin: 5px 5px 5px 5px;
+    box-shadow: 1px 1px 1px #242F40;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #6C8EBF;
+}
+
+.btn-edit {
+    background-color: #485F7F;
+}
+
+.btn-status {
+    background-color: #90BDFF;
+}
+
+.btn-return {
+    background-color: #242F40;
+}
+
+.btn-next {
+    background-color: #82AAE5;
+}
+
+/*Formulaires*/
+label.required{
+    margin-left:25px;
+    font-size: larger;
+}
+
+/*Modales*/
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+/*A propos*/
+img#avatar{
+    margin-bottom: 25px;
+    height: 80%;
+    width: 80%;
+    box-shadow: 0 0 25px #242F40;
 }

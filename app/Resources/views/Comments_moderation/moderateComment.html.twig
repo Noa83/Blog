@@ -1,0 +1,22 @@
+{% extends 'baseBlog.html.twig' %}
+
+{% block body %}
+
+    {% for comment in signaledComments %}
+        <div class="col-sm-12 macro_div_1 well">
+            <p class="col-sm-12"><strong>Publié le:</strong> {{ comment.publishedDate|date('d-m-Y') }}
+                <strong>Par:</strong> {{ comment.author }}</p>
+            <p class="col-sm-12"><strong>Concernant le chapitre: </strong>{{ comment.article.title }}</p>
+            <p class="col-sm-12">{{ comment.content }}</p>
+            <a href="{{ path('validate', {'id': comment.id}) }}" class="btn btn-edit pull-right">
+                Valider ce commentaire
+                <i class="glyphicon glyphicon-ok"></i>
+            </a>
+            <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-delete pull-right"><a
+                        data-toggle="tooltip" data-placement="right" title="Supprimer le commentaire"> </a><i
+                        class="glyphicon glyphicon-trash"></i> Supprimer ce commentaire</button>
+            {{ include('Comments_moderation/modalDeleteComment.html.twig') }}
+        </div>
+    {% endfor %}
+
+{% endblock %}
