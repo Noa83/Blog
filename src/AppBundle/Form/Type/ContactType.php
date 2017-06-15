@@ -24,9 +24,4 @@ class ContactType extends AbstractType
             'data_class' => 'AppBundle\Model\ContactModel'
         ));
     }
-
-//    public function getBlockPrefix()
-//    {
-//        return 'appbundle_contact';
-//    }
 }

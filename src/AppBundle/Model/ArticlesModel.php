@@ -46,7 +46,4 @@ class ArticlesModel
     {
         $this->content = $content;
     }
-
-
-
 }

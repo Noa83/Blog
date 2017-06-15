@@ -211,14 +211,6 @@ class Comment
         return $this->children;
     }
 
-//    /**
-//     * @param mixed $children
-//     */
-//    public function setChildren($children)
-//    {
-//        $this->children = $children;
-//    }
-
     /**
      * @return mixed
      */

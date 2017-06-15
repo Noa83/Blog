@@ -24,7 +24,7 @@ class CommentsManagementController extends Controller
         $commentForm->handleRequest($request);
         $commentId = $request->attributes->get('comment_id');
 
-        if ( $commentId != null ){
+        if ( $commentId !== null ){
         $this->get('article_management_in_bdd')->executeActionOnArticle($this->get('comments_management')
             ->addComment($commentModel, $article, $this->getDoctrine()->getRepository('AppBundle:Comment')
                 ->find($commentId)));

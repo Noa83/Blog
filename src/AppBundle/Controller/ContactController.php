@@ -23,7 +23,7 @@ class ContactController extends Controller
         {
             $this->get('mail')->sendContactMail($contactModel);
                 $this->addFlash('info', 'Votre message a bien été envoyé.');
-              //  return $this->redirectToRoute('contact');
+                return $this->redirectToRoute('contact');
         }
         return $this->render('Contact/contact.html.twig', array('contactForm' => $form->createView()));
     }

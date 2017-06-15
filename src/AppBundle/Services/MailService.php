@@ -2,7 +2,8 @@
 
 namespace AppBundle\Services;
 
-use Symfony\Component\Templating\EngineInterface;
+
+use AppBundle\Model\ContactModel;
 
 class MailService
 {
@@ -15,7 +16,7 @@ class MailService
         $this->twig = $twig;
     }
 
-    public function sendContactMail($contactForm)
+    public function sendContactMail(ContactModel $contactForm)
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Demande de Contact')
