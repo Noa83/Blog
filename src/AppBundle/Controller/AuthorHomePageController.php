@@ -17,7 +17,7 @@ class AuthorHomePageController extends Controller
     public function indexBackAction()
     {
         $articleRepository = $this->getDoctrine()->getRepository('AppBundle:Article');
-        $articlesList =  $articleRepository->getArticlesList();
+        $articlesList =  $articleRepository->getPublishedArticlesList();
 
         return $this->render('Author_home_page/index_author_home.html.twig', [
             'articlesList' => $articlesList

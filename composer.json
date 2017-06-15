@@ -2,6 +2,7 @@
     "name": "audrey/blog",
     "license": "proprietary",
     "type": "project",
+    "description": "Projet d'études n°3 OpenClassrooms CPM-DEV: Blog pour un écrivain",
     "autoload": {
         "psr-4": {
             "": "src/"
