@@ -1,5 +1,7 @@
 <?php
 
+namespace AppBundle\Twig;
+
 class FilterExtension extends \Twig_Extension
 {
     public function getFilters()

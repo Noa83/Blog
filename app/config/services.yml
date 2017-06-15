@@ -22,7 +22,7 @@ services:
                 - "@twig"
 
     app.twig_extension:
-            class: FilterExtension
+            class: AppBundle\Twig\FilterExtension
             public: false
             tags:
                 - { name: twig.extension }
