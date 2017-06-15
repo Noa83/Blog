@@ -1,5 +1,5 @@
 /app/config/parameters.yml
-/app/config/parameters.yml.dist
+/app/config/specifics_parameters.yml
 /build/
 /phpunit.xml
 /var/*

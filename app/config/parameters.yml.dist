@@ -2,15 +2,4 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-    database_host: 127.0.0.1
-    database_port: null
-    database_name: blog
-    database_user: root
-    database_password: null
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
-    tinyMceKey: 82f312pp3k8gikxxqbdzr2akx68ollj4pfuuu6v9cgu1f0ds
-    admin_password: alaska
-    secret: 5b8503951e9afab4926624cec7cb8bc9cc53b0f6
+
