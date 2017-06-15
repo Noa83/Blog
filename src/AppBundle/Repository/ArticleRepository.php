@@ -4,9 +4,11 @@ namespace AppBundle\Repository;
 
 
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getArticlesList()
+    public function getPublishedArticlesList()
     {
         return $this->createQueryBuilder('a')
             ->where('a.published = true')
@@ -28,9 +30,7 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
     {
         $results = $this->createQueryBuilder('a')
             ->addSelect('c')
-//            ->addSelect('children')
             ->join('a.comments', 'c')
-//            ->join('c.children', 'children')
             ->where('c.parent IS NULL')
             ->andWhere('a.id = :id')
             ->setParameter('id', $articleId)
@@ -41,5 +41,17 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
             throw new \Exception();
         }
         return $results;
+    }
+
+    public function findArticlesForPagination($page, $numberPerPage)
+    {
+        $query = $this->createQueryBuilder('a')
+            ->where('a.published = true')
+            ->orderBy('a.id', 'DESC')
+            ->getQuery()
+            ->setFirstResult(($page - 1)*$numberPerPage)
+            ->setMaxResults($numberPerPage);
+
+        return new Paginator($query, true);
     }
 }

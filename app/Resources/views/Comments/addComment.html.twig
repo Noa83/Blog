@@ -24,8 +24,10 @@
         </div>
     </div>
     <div class="col-sm-12" id="comment_buttons">
-        <input id="publish_comment" type="submit" value="Publier" class="btn btn-return pull-right"/>
-        <input id="cancel_comment" type="button" value="Annuler" class="btn btn-status pull-right"/>
+        <input type="button" data-toggle="modal" data-target="#myModal" value="Publier"
+               class="btn btn-next pull-right"/>
+        {{ include(':Article_reading:modalConfirmPublishComment.html.twig') }}
+        <input id="cancel_comment" type="button" value="Annuler" class="btn btn-return pull-right"/>
     </div>
 
     {{ form_end(formView) }}

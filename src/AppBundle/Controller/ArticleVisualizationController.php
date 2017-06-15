@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\Comment;
 use AppBundle\Model\CommentModel;
 use AppBundle\Form\Type\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,7 +21,7 @@ class ArticleVisualizationController extends Controller
     {
         $comments = '';
         $commentsError ='';
-        $articlesList =  $this->getDoctrine()->getRepository('AppBundle:Article')->getArticlesList();
+        $articlesList =  $this->getDoctrine()->getRepository('AppBundle:Article')->getPublishedArticlesList();
         try{
             $articleWithRootComments = $this->getDoctrine()->getRepository('AppBundle:Article')->findRootComments($article);
             $comments = $articleWithRootComments->getComments();
@@ -31,14 +30,6 @@ class ArticleVisualizationController extends Controller
         }
         $commentModel = new CommentModel();
         $commentForm = $this->get('form.factory')->create(CommentType::class, $commentModel);
-
-//        if ($request->isMethod('POST') && $commentForm->handleRequest($request)->isValid()) {
-//
-//            $this->get('article_management_in_bdd')->executeActionOnArticle($this->get('comments_management')->addComment($commentModel, $article));
-//            $this->addFlash('success', 'Ce commentaire a été signalé à l\'auteur');
-//
-//            return $this->redirectToRoute('visualization_article', ['id' => $article->getId()]);
-//        }
 
         return $this->render('Article_reading/article.html.twig', [
             'article' => $article,

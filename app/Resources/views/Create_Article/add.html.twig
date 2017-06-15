@@ -1,32 +1,18 @@
 {% extends 'baseBlog.html.twig' %}
 
-{% block lateral %}
-    {{ include('backLateral.html.twig') }}
-{% endblock %}
-
 {% block body %}
 
     <h1 class="col-md-12 text-center pages_titles">Rédiger un nouveau chapitre</h1>
 
     {{ include(':Create_Article:formTinyMCEEmpty.html.twig') }}
 
-    <div class="col-md-12">
-        {{ include(':Basics_Components:flashMessages.html.twig') }}
-    </div>
-
     <div class="col-sm-12">
-    {#<div class="col-sm-6">#}
         <input type="button" data-toggle="modal" data-target="#myModal" value="Publier"
                class="btn btn-status pull-right"/>
-    {#</div>#}
     {{ include(':Create_Article:modalPublish.html.twig') }}
-    {#<div class="col-sm-6">#}
         <input id="publish" type="submit" name="submitAction" value="Enregistrer" class="btn btn-edit pull-right"/>
-    {#</div>#}
     </div>
     {{ form_end(formView) }}
-
-    {{ include(':Basics_Components:flashMessages.html.twig') }}
 
 {% endblock %}
 

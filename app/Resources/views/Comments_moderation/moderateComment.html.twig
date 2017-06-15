@@ -12,13 +12,11 @@
                 Valider ce commentaire
                 <i class="glyphicon glyphicon-ok"></i>
             </a>
-            <a href="{{ path('delete_comment', {'id': comment.id}) }}" class="btn btn-next pull-right">
-                <i class="glyphicon glyphicon-trash"></i>
-                Supprimer ce commentaire
-            </a>
+            <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-delete pull-right"><a
+                        data-toggle="tooltip" data-placement="right" title="Supprimer le commentaire"> </a><i
+                        class="glyphicon glyphicon-trash"></i> Supprimer ce commentaire</button>
+            {{ include('Comments_moderation/modalDeleteComment.html.twig') }}
         </div>
     {% endfor %}
-
-    {{ include(':Basics_Components:flashMessages.html.twig') }}
 
 {% endblock %}

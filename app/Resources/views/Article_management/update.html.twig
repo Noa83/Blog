@@ -7,20 +7,13 @@
 
     <div class="col-sm-12">
         <input type="button" data-toggle="modal" data-target="#myModal" value="Mettre à jour"
-               class="btn btn-default pull-right"/>
-    </div>
-
-    {{ include(':Article_management:modalUpdate.html.twig') }}
-
-    {{ form_end(formView) }}
-
-    {{ include(':Basics_Components:flashMessages.html.twig') }}
-
-    <div class="col-sm-12">
-        <a href="{{ path('author_home_page') }}" class="btn btn-info pull-right">
+               class="btn btn-next pull-right"/>
+        {{ include(':Article_management:modalUpdate.html.twig') }}
+        <a href="{{ path('author_home_page') }}" class="btn btn-return pull-right">
             <i class="glyphicon glyphicon-eye-open"></i>
             Retour à la liste des articles
         </a>
     </div>
+    {{ form_end(formView) }}
 
 {% endblock %}

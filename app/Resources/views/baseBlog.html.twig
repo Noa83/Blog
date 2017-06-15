@@ -56,10 +56,11 @@
         {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_AUTHOR') %}
             {{ render(controller('AppBundle:BackLateral:getNumberOfArticles')) }}
         {% else %}
-            {{ render(controller('AppBundle:BlogLateral:getChaptersList', { 'max': 10 })) }}
+            {{ render(controller('AppBundle:BlogLateral:getChaptersList', { 'max': 5 })) }}
         {% endif %}
     </div>
     <div class="col-sm-9" id="content">
+        {{ include (':Basics_Components:flashMessages.html.twig') }}
         {% block body %}
         {% endblock %}
     </div>

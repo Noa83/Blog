@@ -1,0 +1,22 @@
+{% extends '::baseBlog.html.twig'%}
+
+{% block stylesheetsChildren %}
+    <link rel="stylesheet" href="{{ asset('css/errors.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid" id="error_bg">
+        <div class="col-md-12" id="opal_bg">
+            <div class="col-md-12 text-center">
+                <h1 class="col-md-12 pages_titles">Oups! Quelquechose n'a pas fonctionné...</h1><br>
+                <p class="col-md-12">Le server a renvoyé "{{ status_code }} {{ status_text }}".
+                    Nous travaillons pour résoudre ce problème, veuillez nous excuser pour la gêne
+                    occasionnée...</p>
+                <hr class="col-md-11">
+                <div class="col-md-12 text-center">
+                    <a href="{{ path('home_page') }}" class="btn btn-return">Retourner à l'accueil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

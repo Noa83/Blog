@@ -24,6 +24,11 @@ div#menu-navbar-collapse.collapse.navbar-collapse, div#menu-navbar-collapse.coll
 nav#menu.navbar.navbar-default{
     padding-left: 5px;
 }
-#menu-navbar-collapse>ul.nav.nav-pills.nav-stacked>li>a:hover{
+#menu-navbar-collapse>ul.nav.nav-pills.nav-stacked>li>a:hover, #menu-navbar-collapse>ul.nav.nav-pills.nav-stacked>li>a:visited{
     background-color: #82AAE5;
+}
+.lateral_titles{
+    font-family: Lobster, cursive;
+    margin-bottom: 40px;
+    color: white;
 }
