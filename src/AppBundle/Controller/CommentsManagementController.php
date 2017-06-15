@@ -16,7 +16,7 @@ class CommentsManagementController extends Controller
     /**
      * @Route("/comments/add/{id}/{comment_id}", name="add_comment", requirements={"id" = "\d+"}, defaults={"comment_id" = null})
      */
-    public function addComment(Request $request, Article $article)
+    public function addCommentAction(Request $request, Article $article)
     {
 
         $commentModel = new CommentModel();
