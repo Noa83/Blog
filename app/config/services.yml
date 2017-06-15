@@ -20,3 +20,9 @@ services:
             arguments:
                 - "@mailer"
                 - "@twig"
+
+    app.twig_extension:
+            class: FilterExtension
+            public: false
+            tags:
+                - { name: twig.extension }

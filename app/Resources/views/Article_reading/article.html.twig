@@ -11,7 +11,7 @@
         <h1 class="col-sm-8 pages_titles">{{ article.title }}</h1>
         <div class="pull-right">Publié le: {{ article.createdDate|date('d-m-Y') }}</div>
 
-        <div class="col-sm-12">{{ article.content|raw }}</div>
+        <div class="col-sm-12">{{ article.content|html }}</div>
         <div class="col-sm-12 buttons">
             <a href="{{ path('home_page') }}" class="btn btn-edit pull-right">
                 <i class="glyphicon glyphicon-home"></i>

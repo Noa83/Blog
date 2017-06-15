@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-sm-12">
                     {% autoescape %}
-                        <p>{{ article.content|truncate(700)|raw }}</p>
+                        <p>{{ article.content|truncate(700)|html }}</p>
                     {% endautoescape %}
                 </div>
 
