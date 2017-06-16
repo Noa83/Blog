@@ -52,7 +52,7 @@ class Comment
     private $publishedDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="parent", orphanRemoval=true)
      */
     private $children;
 
