@@ -6,7 +6,7 @@ use AppBundle\Model\ArticlesModel;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Article;
 
-class ArticleManagementInBdd
+class ArticleManager
 {
     private $manager;
 

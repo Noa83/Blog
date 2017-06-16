@@ -2,18 +2,15 @@ parameters:
     #parameter_name: value
 
 services:
-    article_management_in_bdd:
-        class: AppBundle\Services\ArticleManagementInBdd
+    article_manager:
+        class: AppBundle\Services\ArticleManager
         arguments:
             - "@doctrine.orm.entity_manager"
 
-    comments_management:
-            class: AppBundle\Services\CommentsManagement
+    comments_manager:
+            class: AppBundle\Services\CommentsManager
             arguments:
                 - "@doctrine.orm.entity_manager"
-
-    number_of_something:
-        class: AppBundle\Services\NumberOfSomething
 
     mail:
             class: AppBundle\Services\MailService

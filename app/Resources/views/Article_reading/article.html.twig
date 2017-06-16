@@ -24,15 +24,15 @@
     </div>
     <div class="col-sm-12" id="comment_title">
         <h3 class="pages_titles">Commentaires des lecteurs</h3>
-        {% if commentError is not empty %}
-            <div class="col-sm-offset-1">{{ commentError }}</div>
+        {% if article.comments is empty %}
+            <div class="col-sm-offset-1">Aucun commentaire n'a encore été rédigé pour ce chapitre</div>
         {% endif %}
     </div>
     <div id="comment_field">
         {{ include(':Comments:addComment.html.twig') }}
     </div>
     <div>
-        {{ macro.recursiveComments(comments, 1) }}
+        {{ macro.recursiveComments(article.comments, 1) }}
     </div>
 {% endblock %}
 {% block javascripts %}

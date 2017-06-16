@@ -30,16 +30,16 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
     {
         $results = $this->createQueryBuilder('a')
             ->addSelect('c')
-            ->join('a.comments', 'c')
+            ->leftjoin('a.comments', 'c')
             ->where('c.parent IS NULL')
             ->andWhere('a.id = :id')
             ->setParameter('id', $articleId)
             ->getQuery()
             ->getSingleResult();
 
-        if (empty($results)) {
-            throw new \Exception();
-        }
+//        if (empty($results)) {
+//            throw new \Exception();
+//        }
         return $results;
     }
 

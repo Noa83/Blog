@@ -23,11 +23,11 @@ class CreateArticleController extends Controller
         $articleForm = $this->get('form.factory')->create(ArticlesType::class, $articleModel);
         if ($request->isMethod('POST') && $articleForm->handleRequest($request)->isValid()) {
             if ($request->get('submitAction') == 'Publier') {
-                $this->get('article_management_in_bdd')->executeActionOnArticle($this->get('article_management_in_bdd')->createArticle($articleModel));
+                $this->get('article_manager')->executeActionOnArticle($this->get('article_manager')->createArticle($articleModel));
                 $this->addFlash('success', 'Votre article a bien été publié');
                 return $this->redirectToRoute('author_home_page');
             } elseif ($request->get('submitAction') == 'Enregistrer') {
-                $this->get('article_management_in_bdd')->executeActionOnArticle($this->get('article_management_in_bdd')->recordArticle($articleModel));
+                $this->get('article_manager')->executeActionOnArticle($this->get('article_manager')->recordArticle($articleModel));
                 $this->addFlash('success', 'Votre article a bien été enregistré');
                 return $this->redirectToRoute('author_home_page');
             }

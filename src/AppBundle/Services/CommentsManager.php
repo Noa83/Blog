@@ -7,7 +7,7 @@ use AppBundle\Model\CommentModel;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Article;
 
-class CommentsManagement
+class CommentsManager
 {
     private $manager;
 
@@ -16,18 +16,7 @@ class CommentsManagement
         $this->manager = $manager;
     }
 
-    public function addRootComment(CommentModel $commentModel, Article $article)
-    {
-        $comment = new Comment();
-        $comment->setAuthor($commentModel->getAuthor());
-        $comment->setContent($commentModel->getContent());
-        $comment->setArticle($article);
-        $article->addComment($comment);
-
-        return $article;
-    }
-
-    public function addComment(CommentModel $commentModel, Article $article, Comment $parentComment)
+    public function addComment(CommentModel $commentModel, Article $article, Comment $parentComment = null)
     {
         $comment = new Comment();
         $comment->setAuthor($commentModel->getAuthor());

@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ArticlesModel
  *
- * @ORM\MappedSuperClass
  *
  */
 class ArticlesModel
