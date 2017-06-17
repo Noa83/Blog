@@ -13,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Form\Type\CommentType;
 
 
+
 class CommentsManagementController extends Controller
 {
     /**
@@ -21,7 +22,6 @@ class CommentsManagementController extends Controller
      */
     public function addCommentAction(Request $request, Article $article, Comment $comment)
     {
-
         $commentModel = new CommentModel();
         $commentForm = $this->get('form.factory')->create(CommentType::class, $commentModel);
         $commentForm->handleRequest($request);

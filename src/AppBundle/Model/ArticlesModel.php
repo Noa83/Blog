@@ -6,8 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * ArticlesModel
- *
- *
  */
 class ArticlesModel
 {

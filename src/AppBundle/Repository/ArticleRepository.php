@@ -37,9 +37,6 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getSingleResult();
 
-//        if (empty($results)) {
-//            throw new \Exception();
-//        }
         return $results;
     }
 
