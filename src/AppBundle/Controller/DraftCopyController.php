@@ -14,7 +14,7 @@ class DraftCopyController extends Controller
      * @Security("has_role('ROLE_AUTHOR')")
      *
      * @Route("/author/drafts", name="drafts")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      */
     public function draftsAction()
     {

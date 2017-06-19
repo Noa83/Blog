@@ -15,7 +15,7 @@ class CommentsModerationController extends Controller
      * @Security("has_role('ROLE_AUTHOR')")
      *
      * @Route("/author/moderate", name="moderate")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      */
     public function moderateCommentAction()
     {

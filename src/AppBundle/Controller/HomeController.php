@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     /**
      * @Route("/{page}", name="home_page", defaults={"page" = 1}, requirements={"page" = "\d+"})
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      */
     public function indexAction($page)
     {

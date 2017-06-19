@@ -14,7 +14,7 @@ class AuthorHomePageController extends Controller
      * @Security("has_role('ROLE_AUTHOR')")
      *
      * @Route("/author/", name="author_home_page")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      */
     public function indexBackAction()
     {

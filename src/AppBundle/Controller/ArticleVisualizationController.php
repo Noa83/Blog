@@ -16,7 +16,7 @@ class ArticleVisualizationController extends Controller
 
     /**
      * @Route("/article/{id}", name="visualization_article", requirements={"id" = "\d+"})
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      */
     public function articleAction(Article $article)
     {

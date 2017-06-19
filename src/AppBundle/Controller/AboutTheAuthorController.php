@@ -12,7 +12,7 @@ class AboutTheAuthorController extends Controller
 {
     /**
      * @Route("/about", name="author")
-     * @Method({"GET", "POST"})
+     * @Method({"GET"})
      */
     public function authorAction()
     {
