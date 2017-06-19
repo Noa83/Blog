@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -10,10 +11,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class HomeController extends Controller
 {
-    const NUMBER_PER_PAGE = 5;
+    const NUMBER_PER_PAGE = 3;
 
     /**
      * @Route("/{page}", name="home_page", defaults={"page" = 1}, requirements={"page" = "\d+"})
+     * @Method({"GET", "POST"})
      */
     public function indexAction($page)
     {

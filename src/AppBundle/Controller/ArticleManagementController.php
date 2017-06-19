@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Model\ArticlesModel;
 use AppBundle\Form\Type\ArticlesType;
@@ -18,6 +19,8 @@ class ArticleManagementController extends Controller
      * @Security("has_role('ROLE_AUTHOR')")
      *
      * @Route("/author/update/{id}", name="update", requirements={"id" = "\d+"})
+     *
+     *@Method({"GET", "POST"})
      */
     public function updateAction(Article $article, Request $request)
     {
@@ -41,6 +44,7 @@ class ArticleManagementController extends Controller
      * @Security("has_role('ROLE_AUTHOR')")
      *
      * @Route("/author/delete/{id}", name="delete", requirements={"id" = "\d+"})
+     * @Method({"GET", "POST"})
      */
     public function deleteAction(Article $article)
     {
@@ -54,6 +58,7 @@ class ArticleManagementController extends Controller
      * @Security("has_role('ROLE_AUTHOR')")
      *
      * @Route("/author/unpublish/{id}", name="unpublish", requirements={"id" = "\d+"})
+     * @Method({"GET", "POST"})
      */
     public function unpublishAction(Article $article)
     {
@@ -67,11 +72,12 @@ class ArticleManagementController extends Controller
      * @Security("has_role('ROLE_AUTHOR')")
      *
      * @Route("/author/publish/{id}", name="publish", requirements={"id" = "\d+"})
+     * @Method({"GET", "POST"})
      */
     public function publishAction(Article $article)
     {
         $this->get('article_manager')->executeActionOnArticle($this->get('article_manager')->publishArticle($article));
-        $this->addFlash('success', 'Votre article a bien été retiré des publications');
+        $this->addFlash('success', 'Votre article a bien été publié');
 
         return $this->redirectToRoute('author_home_page');
     }

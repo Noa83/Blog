@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Model\ContactModel;
@@ -14,6 +15,7 @@ class ContactController extends Controller
 {
     /**
      * @Route("/contact", name="contact")
+     * @Method({"GET", "POST"})
      */
     public function contactAction(Request $request)
     {

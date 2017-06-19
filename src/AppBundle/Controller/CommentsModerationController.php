@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -14,6 +15,7 @@ class CommentsModerationController extends Controller
      * @Security("has_role('ROLE_AUTHOR')")
      *
      * @Route("/author/moderate", name="moderate")
+     * @Method({"GET", "POST"})
      */
     public function moderateCommentAction()
     {
@@ -26,6 +28,7 @@ class CommentsModerationController extends Controller
 
     /**
      * @Route("/comments/validate/{id}", name="validate", requirements={"id" = "\d+"})
+     * @Method({"GET", "POST"})
      */
     public function validateAction(Comment $comment)
     {
@@ -37,6 +40,7 @@ class CommentsModerationController extends Controller
 
     /**
      * @Route("/comments/delete_com/{id}", name="delete_comment", requirements={"id" = "\d+"})
+     * @Method({"GET", "POST"})
      */
     public function deleteCommentAction(Comment $comment)
     {

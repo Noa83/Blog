@@ -3,7 +3,6 @@
 namespace AppBundle\Repository;
 
 
-
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
@@ -36,8 +35,7 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('id', $articleId)
             ->getQuery()
             ->getSingleResult();
-
-        return $results;
+            return $results;
     }
 
     public function findArticlesForPagination($page, $numberPerPage)
@@ -46,7 +44,7 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
             ->where('a.published = true')
             ->orderBy('a.id', 'DESC')
             ->getQuery()
-            ->setFirstResult(($page - 1)*$numberPerPage)
+            ->setFirstResult(($page - 1) * $numberPerPage)
             ->setMaxResults($numberPerPage);
 
         return new Paginator($query, true);

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,6 +14,7 @@ class DraftCopyController extends Controller
      * @Security("has_role('ROLE_AUTHOR')")
      *
      * @Route("/author/drafts", name="drafts")
+     * @Method({"GET", "POST"})
      */
     public function draftsAction()
     {

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -9,6 +10,7 @@ class LoginController extends Controller
 {
     /**
      * @Route("/login", name="login")
+     * @Method({"GET", "POST"})
      */
     public function loginAction()
     {

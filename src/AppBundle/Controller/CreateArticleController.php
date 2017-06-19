@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Model\ArticlesModel;
 use AppBundle\Form\Type\ArticlesType;
@@ -16,6 +17,7 @@ class CreateArticleController extends Controller
      * @Security("has_role('ROLE_AUTHOR')")
      *
      * @Route("/author/add", name="add")
+     * @Method({"GET", "POST"})
      */
     public function addAction(Request $request)
     {

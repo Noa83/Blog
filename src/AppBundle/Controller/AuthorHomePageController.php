@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,6 +14,7 @@ class AuthorHomePageController extends Controller
      * @Security("has_role('ROLE_AUTHOR')")
      *
      * @Route("/author/", name="author_home_page")
+     * @Method({"GET", "POST"})
      */
     public function indexBackAction()
     {
