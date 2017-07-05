@@ -17,7 +17,7 @@ class Comment
 {
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Article", inversedBy="comments")
-     *
+     * @ORM\JoinColumn(name="article_id", referencedColumnName="id", nullable=false)
      */
     private $article;
 
